@@ -1,36 +1,34 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Aram Narpavi Herbals storefront
 
-## Getting Started
+This repository contains the Aram Narpavi Herbals Next.js App Router storefront. The homepage, catalogue, product previews, informational pages and session-local cart prototype use development content. Draft support, policy, product and cart pages are excluded from indexing; Shopify, checkout and contact delivery are not configured yet.
 
-First, run the development server:
+## Prerequisites
+
+- Node.js 20.9 or later (required by the installed Next.js version)
+- npm (the repository includes `package-lock.json`)
+
+## Install and run locally
 
 ```bash
+npm ci
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open <http://localhost:3000>. The development server and production build work without Shopify credentials. Copy `.env.example` to `.env.local` only when configuring a feature that needs environment values. `.env.local` is ignored by Git; never commit real credentials.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Shopify settings are checked on the server when a future Shopify feature requests them. Missing Shopify configuration does not prevent local development or a production build. No Shopify API calls have been implemented.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Quality commands
 
-## Learn More
+```bash
+npm run lint
+npm run typecheck
+npm run build
+npm run start
+```
 
-To learn more about Next.js, take a look at the following resources:
+`npm run start` serves the most recent production build. The App Router uses the existing Cache Components and Partial Prefetching configuration in `next.config.ts`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Environment setup
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+See [docs/ENVIRONMENT_SETUP.md](docs/ENVIRONMENT_SETUP.md) for the variable contract and which features require each value. Add credentials only to a local ignored env file or the relevant deployment secret store. Never prefix private credentials with `NEXT_PUBLIC_`.

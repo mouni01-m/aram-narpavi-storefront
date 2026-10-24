@@ -3,6 +3,7 @@ import { ProductGallery } from "@/components/products/product-gallery";
 import { Container } from "@/components/ui/container";
 import { getPreviewProduct } from "@/lib/content/catalog-preview";
 import { AddPreviewItemButton } from "@/components/cart/add-preview-item-button";
+import { PreviewItemView } from "@/components/analytics/preview-item-view";
 
 export function ProductDetailPage({ routeKey }: { routeKey: string }) {
   const product = getPreviewProduct(routeKey);
@@ -10,6 +11,7 @@ export function ProductDetailPage({ routeKey }: { routeKey: string }) {
 
   return (
     <main id="main-content" tabIndex={-1} className="product-detail-page">
+      <PreviewItemView itemId={product.routeKey} itemName={product.name} />
       <Container>
         <nav className="breadcrumbs product-breadcrumbs" aria-label="Breadcrumb">
           <Link href="/">Home</Link>

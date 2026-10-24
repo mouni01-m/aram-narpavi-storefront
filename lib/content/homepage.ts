@@ -44,8 +44,8 @@ export const homepageContent = {
     { name: "Honey", status: "development-preview" satisfies ContentReviewState },
   ],
   philosophy: {
-    heading: "Rooted in tradition. Made for everyday routines.",
-    body: "Aram Narpavi Herbals brings together a considered range of personal-care and pantry products. We aim to make product information easier to understand, with clear details drawn from approved labels.",
+    heading: "Herbal care, rooted in tradition.",
+    body: "Discover herbal soaps and pantry favourites from Aram Narpavi Herbals, thoughtfully presented with clear product details for everyday routines.",
     status: "draft" satisfies ContentReviewState,
   },
   faqPreview: [
@@ -65,7 +65,6 @@ export const homepageContent = {
 } as const;
 
 export const homepageMeta = {
-  title: "Aram Narpavi Herbals | Everyday rituals, rooted in tradition",
-  description:
-    "Explore the Aram Narpavi Herbals storefront. Product availability, verified product details and delivery information will appear when confirmed.",
+  title: "Aram Narpavi Herbals | Herbal soaps and pantry favourites",
+  description: "Discover Aram Narpavi Herbals: traditional herbal soaps, personal-care essentials and pantry favourites, with clear product details for everyday routines.",
 };

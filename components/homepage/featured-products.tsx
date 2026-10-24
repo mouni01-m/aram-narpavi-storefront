@@ -10,11 +10,11 @@ export function FeaturedProducts() {
     <Section className="home-section featured-section" id="featured" aria-labelledby="featured-heading">
       <Container>
         <div className="featured-heading-row">
-          <SectionHeading id="featured-heading" eyebrow="Product previews" title="A closer look" />
+          <SectionHeading id="featured-heading" eyebrow="Explore the range" title="Featured products" />
           <span className="preview-pill">Local preview · details pending</span>
         </div>
         <p className="section-description featured-intro">
-          Explore the product previews. Product details, images, prices and availability are not confirmed; check approved labels when available.
+          Start with a few names from the developing range. Verified specifications, pricing and availability will be added once confirmed.
         </p>
         <div className="product-preview-grid">
           {catalogPreviewProducts.map((product, index) => <ProductCard key={product.name} product={product} index={index} />)}

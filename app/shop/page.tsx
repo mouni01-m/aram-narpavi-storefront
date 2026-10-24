@@ -7,6 +7,7 @@ import { catalogPreviewProducts, discoverablePreviewCollections } from "@/lib/co
 export const metadata: Metadata = {
   title: "Shop preview | Aram Narpavi Herbals",
   description: "Browse development preview names and proposed collection groupings from Aram Narpavi Herbals. Product details and availability are not confirmed.",
+  robots: { index: false, follow: true },
 };
 
 export default function ShopPage() {

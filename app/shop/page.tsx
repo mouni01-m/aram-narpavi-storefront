@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { CatalogBrowser } from "@/components/collections/catalog-browser";
+import { Suspense } from "react";
+import { CatalogProducts, CatalogProductsFallback } from "@/components/sale/catalog-products";
 import { Container } from "@/components/ui/container";
-import { catalogPreviewProducts, discoverablePreviewCollections } from "@/lib/content/catalog-preview";
+import { discoverablePreviewCollections } from "@/lib/content/catalog-preview";
 
 export const metadata: Metadata = {
   title: "Shop preview | Aram Narpavi Herbals",
@@ -23,8 +24,8 @@ export default function ShopPage() {
       <div className="catalog-collection-grid">{discoverablePreviewCollections.map((collection) => <Link className="catalog-collection-tile" href={`/collections/${collection.slug}`} key={collection.slug}><span>Draft collection</span><strong>{collection.title}</strong><span className="catalog-collection-arrow" aria-hidden="true">↗</span></Link>)}</div>
     </Container></section>
     <section className="catalog-section catalog-products" aria-labelledby="preview-products-heading"><Container>
-      <div className="catalog-section-heading"><div><p className="eyebrow">Local sample data</p><h2 id="preview-products-heading">Preview names</h2></div><p>Search and sort the sample names below. No product price, stock or purchase information is available.</p></div>
-      <CatalogBrowser products={catalogPreviewProducts} categories={discoverablePreviewCollections} />
+      <div className="catalog-section-heading"><div><p className="eyebrow">All products</p><h2 id="preview-products-heading">Shop the range</h2></div><p>Search, filter and sort the full Aram Narpavi range.</p></div>
+      <Suspense fallback={<CatalogProductsFallback />}><CatalogProducts /></Suspense>
     </Container></section>
   </main>;
 }

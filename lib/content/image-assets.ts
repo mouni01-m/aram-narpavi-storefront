@@ -8,10 +8,4 @@ export const imageAssets = {
     "pantry-essentials": "/images/categories/pantry-essentials.webp",
     "oils-and-balms": "/images/categories/oils-and-balms.webp",
   },
-  products: {
-    "charcoal-soap": "/images/products/charcoal-soap.webp",
-    "manjistha-soap": "/images/products/manjistha-soap.webp",
-    "abc-malt": "/images/products/abc-malt.webp",
-    honey: "/images/products/honey.webp",
-  },
 } as const;

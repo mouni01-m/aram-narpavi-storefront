@@ -91,10 +91,18 @@ export function HomepageHero() {
       <div className="campaign-carousel__slides" aria-live="off">
         {slides.map((slide, index) => (
           <article key={slide.theme} className={`campaign-slide campaign-slide--${slide.theme}${active === index ? " is-active" : ""}`} aria-roledescription="slide" aria-label={`${index + 1} of ${slides.length}`} aria-hidden={active !== index}>
-            <Image src={slide.image} alt={slide.alt} fill priority={index === 0} sizes="(max-width: 700px) 100vw, 90vw" className="campaign-slide__image" />
+            {slide.theme === "countdown" ? (
+              // The artwork has its own text column; this frame shows only its product scene,
+              // so the live headline and countdown sit in a clean column on the left.
+              <div className="campaign-slide__media">
+                <Image src={slide.image} alt={slide.alt} width={1916} height={821} sizes="(max-width: 700px) 100vw, 120vw" className="campaign-slide__media-image" />
+              </div>
+            ) : (
+              <Image src={slide.image} alt={slide.alt} fill priority={index === 0} sizes="(max-width: 700px) 100vw, 90vw" className="campaign-slide__image" />
+            )}
             <div className="campaign-slide__shade" aria-hidden="true" />
             <div className={`campaign-slide__copy${slide.theme === "countdown" ? " campaign-slide__copy--diwali" : ""}`}>
-              <div className={slide.theme === "countdown" ? "visually-hidden" : ""}>
+              <div>
                 <p className="eyebrow">{slide.eyebrow}</p>
                 {index === 0 ? <h1>{slide.title}</h1> : <h2>{slide.title}</h2>}
                 <p className="campaign-slide__description">{slide.description}</p>

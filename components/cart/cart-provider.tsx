@@ -2,12 +2,14 @@
 
 import { createContext, useContext, useMemo, useReducer, useState, type ReactNode } from "react";
 import { catalogPreviewProducts } from "@/lib/content/catalog-preview";
-import { cartReducer, getCartItemCount, initialCartState, resolvePreviewCartProduct, type CartState } from "@/lib/cart/cart-state";
+import { cartReducer, getCartItemCount, initialCartState, resolvePreviewCartBundle, resolvePreviewCartProduct, type CartState } from "@/lib/cart/cart-state";
+import { bundles } from "@/lib/commerce/sale-config";
 
 type CartContextValue = {
   state: CartState;
   itemCount: number;
   addPreviewItem: (productId: string) => void;
+  addPreviewBundle: (bundleId: string) => void;
   increase: (productId: string) => void;
   decrease: (productId: string) => void;
   remove: (productId: string) => void;
@@ -31,6 +33,15 @@ export function CartProvider({ children }: { children: ReactNode }) {
       }
       dispatch({ type: "add", product });
       setAnnouncement(`${product.name} added to the local preview cart.`);
+    },
+    addPreviewBundle(bundleId) {
+      const bundle = resolvePreviewCartBundle(bundleId, bundles, catalogPreviewProducts);
+      if (!bundle) {
+        setAnnouncement("This combo is not eligible for the preview cart.");
+        return;
+      }
+      dispatch({ type: "add", product: bundle });
+      setAnnouncement(`${bundle.name} added to the local preview cart.`);
     },
     increase(productId) {
       const item = state.items.find((candidate) => candidate.id === productId);

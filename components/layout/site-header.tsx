@@ -8,6 +8,7 @@ import { BrandMark } from "@/components/layout/brand-mark";
 import { useCart } from "@/components/cart/cart-provider";
 
 const navigationItems = [
+  { label: "Heritage Sale", href: "/sale-products" },
   { label: "Shop", href: "/shop" },
   { label: "About", href: "/about" },
   { label: "FAQ", href: "/faq" },

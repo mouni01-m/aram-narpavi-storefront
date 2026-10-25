@@ -26,6 +26,11 @@ export function CartExperience() {
                 )}
                 <div className="cart-line-item__details">
                   <h3><Link href={item.href}>{item.name}</Link></h3>
+                  {item.includes ? (
+                    <ul className="cart-line-item__includes" aria-label={`${item.name} includes`}>
+                      {item.includes.map((included) => <li key={included.name}>{included.quantity} × {included.name}</li>)}
+                    </ul>
+                  ) : null}
                   <p>Development preview · no price or availability</p>
                   <button className="cart-remove-button" type="button" onClick={() => remove(item.id)}>Remove {item.name}</button>
                 </div>

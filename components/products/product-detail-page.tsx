@@ -1,9 +1,11 @@
 import Link from "next/link";
+import { Suspense } from "react";
 import { ProductGallery } from "@/components/products/product-gallery";
 import { Container } from "@/components/ui/container";
 import { getPreviewProduct } from "@/lib/content/catalog-preview";
 import { AddPreviewItemButton } from "@/components/cart/add-preview-item-button";
 import { PreviewItemView } from "@/components/analytics/preview-item-view";
+import { ProductPrice } from "@/components/sale/product-price";
 
 export function ProductDetailPage({ routeKey }: { routeKey: string }) {
   const product = getPreviewProduct(routeKey);
@@ -30,9 +32,9 @@ export function ProductDetailPage({ routeKey }: { routeKey: string }) {
                 <p>Approved label information, description, pack size and product photography have not yet been supplied for this preview.</p>
               </section>
             )}
-            <div className="product-commerce-boundary" aria-label="Purchase information status">
-              <h2>Purchase information</h2>
-              <p>Price, availability and purchase options will appear only after the product record and commerce connection are verified.</p>
+            <div className="product-commerce-boundary" aria-label="Price">
+              <h2>Price</h2>
+              <Suspense fallback={null}><ProductPrice productId={product.routeKey} /></Suspense>
             </div>
             <div className="preview-cart-action" aria-labelledby="preview-cart-action-heading">
               <h2 id="preview-cart-action-heading">Try the local cart prototype</h2>

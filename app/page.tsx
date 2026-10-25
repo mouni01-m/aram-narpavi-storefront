@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { CategorySection } from "@/components/homepage/category-section";
+import { Suspense } from "react";
 import { FaqPreview } from "@/components/homepage/faq-preview";
-import { FeaturedProducts } from "@/components/homepage/featured-products";
 import { FinalCta } from "@/components/homepage/final-cta";
 import { HomepageHero } from "@/components/homepage/hero";
 import { PhilosophySection } from "@/components/homepage/philosophy-section";
 import { ProductInformation } from "@/components/homepage/product-information";
-import { OfferStatus } from "@/components/homepage/offer-status";
+import { SaleAnnouncement, SaleAnnouncementFallback } from "@/components/sale/sale-announcement";
+import { SaleExperience, SaleExperienceFallback } from "@/components/sale/sale-experience";
 import { homepageMeta } from "@/lib/content/homepage";
 import { getSiteUrl } from "@/lib/config/site-url";
 
@@ -28,10 +28,9 @@ export default function Home() {
   return (
     <main id="main-content" tabIndex={-1}>
       {structuredData ? <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }} /> : null}
+      <Suspense fallback={<SaleAnnouncementFallback />}><SaleAnnouncement /></Suspense>
       <HomepageHero />
-      <CategorySection />
-      <FeaturedProducts />
-      <OfferStatus />
+      <Suspense fallback={<SaleExperienceFallback />}><SaleExperience /></Suspense>
       <PhilosophySection />
       <ProductInformation />
       <FaqPreview />

@@ -3,6 +3,8 @@ export type CartProduct = {
   name: string;
   href: string;
   image: { src: string; alt: string } | null;
+  /** Present only on combo lines: the products the combo contains. */
+  includes?: readonly { name: string; quantity: number }[];
 };
 
 export type CartItem = CartProduct & { quantity: number };
@@ -22,6 +24,16 @@ export type CartEligiblePreview = {
   images: readonly { src: string; alt: string; approvalStatus: string }[];
 };
 
+export type CartEligibleBundle = {
+  id: string;
+  name: string;
+  items: readonly { productId: string; quantity: number }[];
+};
+
+/** Combo lines use a prefixed id so they can never collide with a product id. */
+export const BUNDLE_ID_PREFIX = "bundle:";
+export const BUNDLE_HREF = "/#combos";
+
 export const initialCartState: CartState = { items: [] };
 
 export function isPositiveInteger(value: number): boolean {
@@ -29,7 +41,11 @@ export function isPositiveInteger(value: number): boolean {
 }
 
 function isValidCartProduct(product: CartProduct | null): product is CartProduct {
-  return Boolean(product && product.id && product.name && product.href === `/products/${product.id}`);
+  if (!product || !product.id || !product.name) return false;
+  if (product.id.startsWith(BUNDLE_ID_PREFIX)) {
+    return product.href === BUNDLE_HREF && Boolean(product.includes?.length) && product.includes!.every((item) => item.name && isPositiveInteger(item.quantity));
+  }
+  return product.href === `/products/${product.id}` && !product.includes;
 }
 
 export function resolvePreviewCartProduct(productId: string, previews: readonly CartEligiblePreview[]): CartProduct | null {
@@ -41,6 +57,21 @@ export function resolvePreviewCartProduct(productId: string, previews: readonly 
     name: preview.name,
     href: `/products/${preview.routeKey}`,
     image: approvedImage ? { src: approvedImage.src, alt: approvedImage.alt } : null,
+  };
+}
+
+/** Resolve a combo into one cart line. Every included product must be cart-eligible. */
+export function resolvePreviewCartBundle(bundleId: string, bundles: readonly CartEligibleBundle[], previews: readonly CartEligiblePreview[]): CartProduct | null {
+  const bundle = bundles.find((candidate) => candidate.id === bundleId);
+  if (!bundle || !bundle.items.length) return null;
+  const items = bundle.items.map((item) => ({ product: resolvePreviewCartProduct(item.productId, previews), quantity: item.quantity }));
+  if (items.some((item) => !item.product || !isPositiveInteger(item.quantity))) return null;
+  return {
+    id: `${BUNDLE_ID_PREFIX}${bundle.id}`,
+    name: bundle.name,
+    href: BUNDLE_HREF,
+    image: items.find((item) => item.product?.image)?.product?.image ?? null,
+    includes: items.map((item) => ({ name: item.product!.name, quantity: item.quantity })),
   };
 }
 

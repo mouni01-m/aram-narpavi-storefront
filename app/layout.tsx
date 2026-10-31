@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image", ...(siteUrl ? { images: ["/images/social/og-homepage.webp"] } : {}) },
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body>

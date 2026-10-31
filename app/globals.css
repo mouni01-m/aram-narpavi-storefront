@@ -834,14 +834,13 @@ h1 { font-size: clamp(2.65rem, 5.8vw, 5rem); }
 }
 
 /* Combos page */
-.combo-category-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-top: 2rem; }
-.combo-category-card { display: flex; flex-direction: column; gap: .6rem; padding: 1.4rem; border: 1px solid var(--color-border); border-radius: 3px; background: #fcfaf5; transition: transform var(--motion-standard) var(--ease-natural), box-shadow var(--motion-standard) var(--ease-natural); }
-.combo-category-card:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgb(34 44 33 / 7%); }
-.combo-category-card h3 { margin: 0; font-family: var(--font-body); font-size: 1.1rem; font-weight: 650; color: var(--color-deep-green); }
-.combo-category-card p { margin: 0; color: var(--color-muted); font-size: .9rem; }
-.combo-category-status { width: fit-content; padding: .25rem .6rem; border: 1px solid var(--color-gold); border-radius: 999px; color: #755a2d; font-size: .7rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
-@media (max-width: 900px) { .combo-category-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 600px) { .combo-category-grid { grid-template-columns: 1fr; } }
+.combos-page { padding-block: clamp(2rem, 5vw, 3.5rem) var(--space-section); background: var(--color-ivory); }
+.combos-page__intro { max-width: 46rem; margin-bottom: clamp(2rem, 4vw, 3rem); }
+.combos-page__intro h1 { margin: .5rem 0 0; font-size: clamp(2.4rem, 4.5vw, 3.75rem); }
+.combos-page__intro p:not(.eyebrow) { margin: 1rem 0 0; color: var(--color-muted); font-size: 1.05rem; }
+.combos-page__grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.25rem; margin: 0; padding: 0; list-style: none; }
+@media (max-width: 1024px) { .combos-page__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 700px) { .combos-page__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; } }
 
 /* Instagram showcase */
 .instagram-section { background: #f3f0e7; }

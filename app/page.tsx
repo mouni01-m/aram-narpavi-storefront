@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import { CategorySection } from "@/components/homepage/category-section";
+import { CombosBand } from "@/components/homepage/combos-band";
 import { FeaturedProducts } from "@/components/homepage/featured-products";
 import { FinalCta } from "@/components/homepage/final-cta";
 import { HomepageHero } from "@/components/homepage/hero";
 import { InstagramShowcase } from "@/components/homepage/instagram-showcase";
 import { PhilosophySection } from "@/components/homepage/philosophy-section";
+import { TrustStrip } from "@/components/homepage/trust-strip";
 import { homepageMeta } from "@/lib/content/homepage";
 import { getSiteUrl } from "@/lib/config/site-url";
 
@@ -27,8 +29,10 @@ export default function Home() {
     <main id="main-content" tabIndex={-1}>
       {structuredData ? <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }} /> : null}
       <HomepageHero />
+      <TrustStrip />
       <CategorySection />
       <FeaturedProducts />
+      <CombosBand />
       <PhilosophySection />
       <InstagramShowcase />
       <FinalCta />

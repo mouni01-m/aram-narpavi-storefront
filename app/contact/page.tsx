@@ -1,9 +1,10 @@
 import { ContactFormPreview } from "@/components/information/contact-form-preview";
 import { InformationHero } from "@/components/information/information-hero";
+import { SocialLinks } from "@/components/layout/social-links";
 import { Container } from "@/components/ui/container";
-import { contactDetails, createDraftMetadata } from "@/lib/content/information-pages";
+import { contactDetails, createDraftMetadata, primaryPhoneHref, whatsappHref } from "@/lib/content/information-pages";
 
-export const metadata = createDraftMetadata("Contact", "Contact Aram Narpavi Herbals by email or WhatsApp for product and order enquiries. The website contact form is not enabled.");
+export const metadata = createDraftMetadata("Contact", "Contact Aram Narpavi Herbals by phone, email or WhatsApp for product and order enquiries. The website contact form is not enabled.");
 
 export default function ContactPage() {
   return (
@@ -15,10 +16,13 @@ export default function ContactPage() {
           <h2 id="contact-details-heading">Contact details</h2>
           <p>Email and WhatsApp are available for product and order enquiries. No response-time or business-hours commitment is stated.</p>
           <dl>
+            <div><dt>Phone</dt><dd><a href={primaryPhoneHref}>{contactDetails.whatsapp}</a></dd></div>
             <div><dt>Email</dt><dd><a href={`mailto:${contactDetails.email}`}>{contactDetails.email}</a></dd></div>
-            <div><dt>WhatsApp</dt><dd><a href="https://wa.me/919585304545" target="_blank" rel="noreferrer">{contactDetails.whatsapp}</a></dd></div>
-            <div><dt>Additional phone</dt><dd>{contactDetails.additionalPhone}</dd></div>
+            <div><dt>WhatsApp</dt><dd><a href={whatsappHref} target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a></dd></div>
+            <div><dt>Additional phone</dt><dd><a href={`tel:${contactDetails.additionalPhone.replace(/\s/g, "")}`}>{contactDetails.additionalPhone}</a></dd></div>
           </dl>
+          <p className="contact-social-label">Follow Aram Narpavi Herbals</p>
+          <SocialLinks />
         </section>
         <section aria-labelledby="contact-form-heading">
           <p className="eyebrow">Form preview</p>

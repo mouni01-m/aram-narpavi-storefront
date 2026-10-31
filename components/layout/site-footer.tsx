@@ -1,9 +1,8 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { BrandMark } from "@/components/layout/brand-mark";
-import { contactDetails } from "@/lib/content/information-pages";
-
-const INSTAGRAM_URL = "https://www.instagram.com/aramnarpaviherbals/";
+import { SocialLinks } from "@/components/layout/social-links";
+import { contactDetails, primaryPhoneHref, whatsappHref } from "@/lib/content/information-pages";
 
 export function SiteFooter() {
   return (
@@ -12,12 +11,13 @@ export function SiteFooter() {
         <div className="footer-main">
           <div className="footer-brand-column">
             <BrandMark />
-            <p className="footer-note">Nature's Purity, Tradition's Healing</p>
+            <p className="footer-note">Nature’s Purity, Tradition’s Healing</p>
             <div className="footer-contact" aria-label="Contact details">
+              <a href={primaryPhoneHref}>Call {contactDetails.whatsapp}</a>
               <a href={`mailto:${contactDetails.email}`}>{contactDetails.email}</a>
-              <a href="https://wa.me/919585304545" target="_blank" rel="noreferrer">WhatsApp {contactDetails.whatsapp}</a>
-              <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer noopener">Instagram @aramnarpaviherbals</a>
+              <a href={whatsappHref} target="_blank" rel="noopener noreferrer">WhatsApp {contactDetails.whatsapp}</a>
             </div>
+            <SocialLinks />
           </div>
           <nav className="footer-nav" aria-label="Footer navigation">
             <div><h2>Explore</h2><Link href="/shop">Shop</Link><Link href="/best-sellers">Bestsellers</Link><Link href="/combos">Combos & Gift Sets</Link><Link href="/heritage-sale">Heritage Sale</Link><Link href="/#categories">Collections</Link><Link href="/about">About</Link></div>

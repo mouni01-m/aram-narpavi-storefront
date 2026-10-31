@@ -64,7 +64,7 @@ export function HomepageHero() {
   }, []);
 
   useEffect(() => {
-    if (paused) return;
+    if (paused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     timerRef.current = setInterval(() => {
       if (!document.hidden) {
         setActive((current) => (current + 1) % slides.length);
@@ -75,12 +75,12 @@ export function HomepageHero() {
     };
   }, [paused]);
 
+  const swipeStartX = useRef<number | null>(null);
+
   const onKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
     if (event.key === "ArrowRight") { event.preventDefault(); move(1); }
     if (event.key === "ArrowLeft") { event.preventDefault(); move(-1); }
   };
-
-  const prefersReducedMotion = typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   return (
     <section
@@ -92,6 +92,14 @@ export function HomepageHero() {
       onFocusCapture={() => setPaused(true)}
       onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setPaused(false); }}
       onKeyDown={onKeyDown}
+      onTouchStart={(event) => { swipeStartX.current = event.touches[0]?.clientX ?? null; }}
+      onTouchEnd={(event) => {
+        const start = swipeStartX.current;
+        const end = event.changedTouches[0]?.clientX;
+        swipeStartX.current = null;
+        if (start === null || end === undefined) return;
+        if (Math.abs(end - start) > 40) move(end < start ? 1 : -1);
+      }}
     >
       <div className="campaign-carousel__slides" aria-live="off">
         {slides.map((slide, index) => (

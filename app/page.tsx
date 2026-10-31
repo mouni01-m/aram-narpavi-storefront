@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { CategorySection } from "@/components/homepage/category-section";
 import { FeaturedProducts } from "@/components/homepage/featured-products";
 import { FinalCta } from "@/components/homepage/final-cta";
+import { HeritageSalePopup } from "@/components/homepage/heritage-sale-popup";
 import { HeritageSaleSection } from "@/components/homepage/heritage-sale-section";
 import { HomepageHero } from "@/components/homepage/hero";
 import { InstagramShowcase } from "@/components/homepage/instagram-showcase";
@@ -34,6 +35,7 @@ export default function Home() {
       <PhilosophySection />
       <InstagramShowcase />
       <FinalCta />
+      <HeritageSalePopup />
     </main>
   );
 }

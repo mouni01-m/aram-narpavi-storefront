@@ -641,10 +641,10 @@ button { color: inherit; font: inherit; }
   --color-ink: #2a2e28;
   --color-muted: #5f655c;
   --color-border: #ecdcc9;
-  --color-orange: #c4551c;
-  --color-orange-dark: #a94516;
-  --color-peach: #fde6d4;
-  --color-leaf: #e4efdc;
+  --color-orange: #e98232;
+  --color-orange-dark: #d6701f;
+  --color-peach: #fbe3d0;
+  --color-leaf: #a8c686;
   --space-section: clamp(3.5rem, 7vw, 6rem);
   --radius-card: 4px;
   --radius-control: 3px;
@@ -694,6 +694,7 @@ h1 { font-size: clamp(2.65rem, 5.8vw, 5rem); }
 .footer-contact a { min-height: 32px; display: inline-flex; align-items: center; color: #e4e8e2; font-size: .8125rem; text-underline-offset: .2em; }
 .footer-contact a:hover { color: var(--color-ivory); }
 .brand-logo-frame { position: relative; width: 11rem; height: 2.8rem; display: block; }
+.site-footer .brand-logo-frame { width: 12.5rem; height: 3.4rem; padding: .35rem .6rem; border-radius: 8px; background: var(--color-ivory); box-sizing: border-box; }
 .brand-logo-frame img { object-fit: contain; object-position: left center; }
 .brand-logo-prefetch { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
 .final-cta__copy { max-width: 25rem; }
@@ -846,8 +847,8 @@ h1 { font-size: clamp(2.65rem, 5.8vw, 5rem); }
 }
 
 /* Storefront theme: orange actions, light green identity, peach and cream surfaces */
-.button { background: var(--color-orange); border-color: var(--color-orange); color: #fff; box-shadow: 0 1px 2px rgb(42 46 40 / 12%); }
-.button:hover { background: var(--color-orange-dark); border-color: var(--color-orange-dark); }
+.button { background: var(--color-orange); border-color: var(--color-orange); color: var(--color-deep-green); box-shadow: 0 1px 2px rgb(42 46 40 / 12%); }
+.button:hover { background: var(--color-orange-dark); border-color: var(--color-orange-dark); color: var(--color-deep-green); }
 .button--outline { border-color: var(--color-herbal); background: transparent; color: var(--color-herbal); box-shadow: none; }
 .button--outline:hover { background: var(--color-herbal); border-color: var(--color-herbal); color: #fff; }
 .button--light { border-color: var(--color-ivory); background: var(--color-ivory); color: var(--color-deep-green); }
@@ -855,7 +856,7 @@ h1 { font-size: clamp(2.65rem, 5.8vw, 5rem); }
 .home-hero { background: var(--color-beige); }
 .instagram-section { background: var(--color-leaf); }
 .product-preview-card { border: 1px solid var(--color-border); border-radius: 12px; background: #fff; box-shadow: 0 1px 2px rgb(42 46 40 / 6%); transition: transform var(--motion-standard) var(--ease-natural), box-shadow var(--motion-standard) var(--ease-natural); }
-.product-preview-card:hover { transform: translateY(-4px); box-shadow: 0 16px 30px -16px rgb(42 46 40 / 28%); }
+.product-preview-card:hover { transform: translateY(-4px); border-color: var(--color-leaf); box-shadow: 0 16px 30px -16px rgb(42 46 40 / 28%); }
 .product-preview-card:focus-within { box-shadow: 0 16px 30px -16px rgb(42 46 40 / 28%); }
 .product-photo-placeholder { border-radius: 0; }
 .product-photo-placeholder:hover > img { transform: scale(1.05); }

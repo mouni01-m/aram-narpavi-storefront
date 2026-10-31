@@ -1,6 +1,6 @@
 /** Optional brand imagery. Add matching files under public/ to replace each designed fallback. */
 export const imageAssets = {
-  brand: { logo: "/images/brand/aram-narpavi-logo.svg" },
+  brand: { logo: "/images/brand/aram-narpavi-logo-transparent.png" },
   home: { hero: "/images/home/hero-products.webp", story: "/images/home/brand-story.webp" },
   categories: {
     "herbal-soaps": "/images/categories/herbal-soaps.webp",

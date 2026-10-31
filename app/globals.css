@@ -566,15 +566,15 @@ button { color: inherit; font: inherit; }
 .campaign-slide { position: absolute; inset: 0; overflow: hidden; opacity: 0; visibility: hidden; transition: opacity .55s ease, visibility .55s; }
 .campaign-slide.is-active { z-index: 1; opacity: 1; visibility: visible; }
 .campaign-slide::before { position: absolute; z-index: 0; inset: -1rem; background-position: center; background-size: cover; content: ""; filter: blur(1rem); opacity: .58; transform: scale(1.04); }
-.campaign-slide--charcoal-ad::before { background-image: url("/images/home/campaigns/charcoal-soap-ad.png"); }
-.campaign-slide--family-ad::before { background-image: url("/images/home/campaigns/abc-malt-family.png"); }
-.campaign-slide--countdown::before { background-image: url("/images/home/campaigns/diwali-goodness.png"); }
+.campaign-slide--charcoal-ad::before { background-image: url("/images/banners/desktop-banner.webp"); }
+.campaign-slide--family-ad::before { background-image: url("/images/banners/promotional-banner.webp"); }
+.campaign-slide--heritage-sale::before { background-image: url("/images/banners/festival-banner.webp"); }
 .campaign-slide__image { z-index: 1; object-fit: contain; object-position: right center; }
 .campaign-slide--charcoal-ad .campaign-slide__image, .campaign-slide--family-ad .campaign-slide__image { object-position: right center; }
-.campaign-slide--countdown { background: linear-gradient(105deg, #143f2a 0%, #255d3b 47%, #ddbd80 100%); }
-.campaign-slide--countdown .campaign-slide__image { object-fit: contain; object-position: right center; }
-.campaign-slide--charcoal { background: radial-gradient(ellipse at 78% 45%, #895b39 0%, #553d2d 32%, #142d23 76%); }
-.campaign-slide--charcoal .campaign-slide__image { left: 49%; width: 51%; object-fit: contain; object-position: center; mix-blend-mode: multiply; }
+.campaign-slide--heritage-sale { background: linear-gradient(105deg, #193c2d 0%, #244936 47%, #d97745 100%); }
+.campaign-slide--heritage-sale .campaign-slide__image { object-fit: contain; object-position: right center; }
+.campaign-slide--charcoal-ad { background: radial-gradient(ellipse at 78% 45%, #6b8a5e 0%, #3d5a3a 32%, #1e3a28 76%); }
+.campaign-slide--charcoal-ad .campaign-slide__image { object-fit: cover; object-position: center; }
 .campaign-slide__shade { position: absolute; z-index: 2; inset: 0; pointer-events: none; background: linear-gradient(90deg, rgb(18 45 31 / 93%) 0%, rgb(18 45 31 / 82%) 35%, rgb(18 45 31 / 12%) 75%, transparent 100%); }
 .campaign-slide--family-ad .campaign-slide__shade { background: linear-gradient(90deg, rgb(23 39 24 / 66%) 0%, rgb(23 39 24 / 35%) 38%, transparent 72%); }
 .campaign-slide__copy--artwork { top: auto; right: 1.4rem; bottom: 1.55rem; left: auto; width: auto; transform: none; }
@@ -816,4 +816,68 @@ h1 { font-size: clamp(2.65rem, 5.8vw, 5rem); }
   .hero-product-photo { aspect-ratio: 1.02; }
   .home-hero__grid { padding-block: 2rem; }
   .cta-group { align-items: flex-start; }
+}
+
+/* Heritage Sale homepage section */
+.heritage-sale-section { background: #193c2d; }
+.heritage-sale-banner { position: relative; min-height: 24rem; display: flex; align-items: center; overflow: hidden; border-radius: 4px; background: #213f30; }
+.heritage-sale-banner > img { position: absolute; inset: 0; object-fit: cover; opacity: .45; }
+.heritage-sale-banner__overlay { position: relative; z-index: 1; max-width: 36rem; padding: clamp(2rem, 5vw, 3.5rem); color: #fcfaf5; }
+.heritage-sale-banner__overlay .eyebrow { color: #f2d49a; }
+.heritage-sale-banner__overlay h2 { color: #fcfaf5; }
+.heritage-sale-banner__text { max-width: 32rem; margin: 1rem 0 1.5rem; color: #e4e8e2; font-size: 1.0625rem; }
+.heritage-sale-banner__cta { border-color: #f3e8d1; background: #f7f1e4; color: #193c2d; }
+.heritage-sale-banner__cta:hover { background: #fff; }
+@media (max-width: 700px) {
+  .heritage-sale-banner { min-height: 18rem; }
+  .heritage-sale-banner__overlay { padding: 1.5rem; }
+}
+
+/* Heritage Sale page */
+.heritage-sale-page { background: #193c2d; color: #fcfaf5; }
+.heritage-sale-hero { padding-block: clamp(2.75rem, 6vw, 5rem); background: #193c2d; }
+.heritage-sale-hero .eyebrow { color: #f2d49a; }
+.heritage-sale-hero h1 { color: #fcfaf5; max-width: 16ch; }
+.heritage-sale-lede { max-width: 45rem; margin: 1rem 0 0; color: #e4e8e2; font-size: 1.075rem; }
+.heritage-sale-terms { max-width: 48rem; margin: 1.5rem 0; padding: 1rem 1.1rem; border: 1px solid rgb(242 207 137 / 40%); border-left: 3px solid #d97745; border-radius: 3px; background: rgb(252 250 245 / 8%); }
+.heritage-sale-terms p { margin: 0; color: #e4e8e2; font-size: 0.9rem; }
+.heritage-sale-terms strong { color: #f2d49a; }
+.heritage-sale-cta { border-color: #f3e8d1; background: #f7f1e4; color: #193c2d; margin-top: 1rem; }
+.heritage-sale-cta:hover { background: #fff; }
+.heritage-sale-products { padding-block: clamp(2.5rem, 5vw, 4rem); background: #fcfaf5; }
+.heritage-sale-products .eyebrow { color: var(--color-herbal); }
+.heritage-sale-products h2 { color: var(--color-deep-green); }
+.heritage-sale-products .catalog-section-heading > p { color: var(--color-muted); }
+
+/* Combos page */
+.combo-category-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-top: 2rem; }
+.combo-category-card { display: flex; flex-direction: column; gap: .6rem; padding: 1.4rem; border: 1px solid var(--color-border); border-radius: 3px; background: #fcfaf5; transition: transform var(--motion-standard) var(--ease-natural), box-shadow var(--motion-standard) var(--ease-natural); }
+.combo-category-card:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgb(34 44 33 / 7%); }
+.combo-category-card h3 { margin: 0; font-family: var(--font-body); font-size: 1.1rem; font-weight: 650; color: var(--color-deep-green); }
+.combo-category-card p { margin: 0; color: var(--color-muted); font-size: .9rem; }
+.combo-category-status { width: fit-content; padding: .25rem .6rem; border: 1px solid var(--color-gold); border-radius: 999px; color: #755a2d; font-size: .7rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+@media (max-width: 900px) { .combo-category-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px) { .combo-category-grid { grid-template-columns: 1fr; } }
+
+/* Instagram showcase */
+.instagram-section { background: #f3f0e7; }
+.instagram-header { display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+.instagram-follow-link { display: inline-flex; align-items: center; gap: .4rem; min-height: 44px; color: var(--color-herbal); font-weight: 650; text-decoration: underline; text-decoration-color: var(--color-gold); text-underline-offset: .2em; }
+.instagram-follow-link:hover { color: var(--color-deep-green); }
+.instagram-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .75rem; margin-top: 2rem; }
+.instagram-tile { position: relative; aspect-ratio: 1; overflow: hidden; border-radius: 3px; background: #e8ebe4; }
+.instagram-tile > img { object-fit: cover; transition: transform 450ms var(--ease-natural); }
+.instagram-tile:hover > img { transform: scale(1.04); }
+.instagram-tile__placeholder { position: absolute; inset: 0; display: grid; place-items: center; padding: 1rem; color: var(--color-muted); font-size: .8rem; text-align: center; }
+.instagram-tile__overlay { position: absolute; inset: 0; display: grid; place-items: center; background: rgb(25 60 45 / 0%); transition: background var(--motion-standard) var(--ease-natural); pointer-events: none; }
+.instagram-tile__overlay span { color: transparent; font-size: .9rem; font-weight: 700; letter-spacing: .08em; transition: color var(--motion-standard) var(--ease-natural); }
+.instagram-tile:hover .instagram-tile__overlay { background: rgb(25 60 45 / 45%); }
+.instagram-tile:hover .instagram-tile__overlay span { color: #fcfaf5; }
+.instagram-tile:focus-visible .instagram-tile__overlay { background: rgb(25 60 45 / 45%); }
+.instagram-tile:focus-visible .instagram-tile__overlay span { color: #fcfaf5; }
+@media (max-width: 700px) {
+  .instagram-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 430px) {
+  .instagram-grid { gap: .5rem; }
 }

@@ -5,5 +5,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const base = getSiteUrl();
   // Do not publish invented canonical URLs; configure SITE_URL when the domain is confirmed.
   if (!base) return [];
-  return [{ url: new URL("/", base).toString(), changeFrequency: "monthly", priority: 1 }];
+  const routes = ["/", "/shop", "/best-sellers", "/combos", "/heritage-sale", "/about", "/contact", "/faq"];
+  return routes.map((route) => ({
+    url: new URL(route, base).toString(),
+    changeFrequency: "monthly",
+    priority: route === "/" ? 1 : 0.7,
+  }));
 }

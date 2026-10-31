@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
 import { CategorySection } from "@/components/homepage/category-section";
-import { FaqPreview } from "@/components/homepage/faq-preview";
 import { FeaturedProducts } from "@/components/homepage/featured-products";
 import { FinalCta } from "@/components/homepage/final-cta";
+import { HeritageSaleSection } from "@/components/homepage/heritage-sale-section";
 import { HomepageHero } from "@/components/homepage/hero";
+import { InstagramShowcase } from "@/components/homepage/instagram-showcase";
 import { PhilosophySection } from "@/components/homepage/philosophy-section";
-import { ProductInformation } from "@/components/homepage/product-information";
-import { OfferStatus } from "@/components/homepage/offer-status";
 import { homepageMeta } from "@/lib/content/homepage";
 import { getSiteUrl } from "@/lib/config/site-url";
 
@@ -21,7 +20,7 @@ export default function Home() {
   const structuredData = siteUrl ? {
     "@context": "https://schema.org",
     "@graph": [
-      { "@type": "Organization", name: "Aram Narpavi Herbals", url: siteUrl.toString(), logo: new URL("/images/brand/aram-narpavi-logo.png", siteUrl).toString() },
+      { "@type": "Organization", name: "Aram Narpavi Herbals", url: siteUrl.toString(), logo: new URL("/images/brand/aram-narpavi-logo.png", siteUrl).toString(), sameAs: ["https://www.instagram.com/aramnarpaviherbals/"] },
       { "@type": "WebSite", name: "Aram Narpavi Herbals", url: siteUrl.toString() },
     ],
   } : null;
@@ -31,10 +30,9 @@ export default function Home() {
       <HomepageHero />
       <CategorySection />
       <FeaturedProducts />
-      <OfferStatus />
+      <HeritageSaleSection />
       <PhilosophySection />
-      <ProductInformation />
-      <FaqPreview />
+      <InstagramShowcase />
       <FinalCta />
     </main>
   );

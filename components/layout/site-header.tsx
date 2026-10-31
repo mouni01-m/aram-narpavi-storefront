@@ -11,7 +11,6 @@ const navigationItems = [
   { label: "Shop", href: "/shop" },
   { label: "Bestsellers", href: "/best-sellers" },
   { label: "Combos", href: "/combos" },
-  { label: "Heritage Sale", href: "/heritage-sale" },
   { label: "About", href: "/about" },
   { label: "FAQ", href: "/faq" },
   { label: "Contact", href: "/contact" },

@@ -20,7 +20,7 @@ export function SiteFooter() {
             <SocialLinks />
           </div>
           <nav className="footer-nav" aria-label="Footer navigation">
-            <div><h2>Explore</h2><Link href="/shop">Shop</Link><Link href="/best-sellers">Bestsellers</Link><Link href="/combos">Combos & Gift Sets</Link><Link href="/heritage-sale">Heritage Sale</Link><Link href="/#categories">Collections</Link><Link href="/about">About</Link></div>
+            <div><h2>Explore</h2><Link href="/shop">Shop</Link><Link href="/best-sellers">Bestsellers</Link><Link href="/combos">Combos & Gift Sets</Link><Link href="/#categories">Collections</Link><Link href="/about">About</Link></div>
             <div><h2>Information</h2><Link href="/faq">FAQ</Link><Link href="/contact">Contact</Link><Link href="/delivery-policy">Delivery policy</Link><Link href="/refund-policy">Refund and returns</Link></div>
             <div><h2>Policies</h2><Link href="/cancellation-policy">Cancellation</Link><Link href="/privacy-policy">Privacy</Link><Link href="/terms-and-conditions">Terms and conditions</Link></div>
           </nav>

@@ -10,7 +10,7 @@ const galleryImages = [
   { src: "/images/about/ingredients.webp", alt: "Natural herbal ingredients used in Aram Narpavi products" },
   { src: "/images/about/traditional-preparation.webp", alt: "Traditional preparation of herbal products" },
   { src: "/images/about/brand-story.webp", alt: "Aram Narpavi brand story" },
-  { src: "/images/banners/festival-banner.webp", alt: "Festive campaign with Aram Narpavi herbal products" },
+  { src: "/images/home/campaigns/diwali-goodness.webp", alt: "Aram Narpavi Diwali campaign with herbal products and festive lamps" },
   { src: "/images/home/hero-products.webp", alt: "Aram Narpavi herbal product range" },
   { src: "/images/categories/herbal-soaps.webp", alt: "Aram Narpavi herbal soaps" },
 ];

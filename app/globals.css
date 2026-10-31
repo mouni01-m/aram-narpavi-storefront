@@ -565,10 +565,9 @@ button { color: inherit; font: inherit; }
 .campaign-carousel__slides { position: relative; height: clamp(28rem, 64vh, 40rem); }
 .campaign-slide { position: absolute; inset: 0; overflow: hidden; opacity: 0; visibility: hidden; transition: opacity .55s ease, visibility .55s; }
 .campaign-slide.is-active { z-index: 1; opacity: 1; visibility: visible; }
-.campaign-slide__image { z-index: 1; object-fit: contain; object-position: right center; }
-.campaign-slide--charcoal-ad .campaign-slide__image, .campaign-slide--family-ad .campaign-slide__image { object-position: right center; }
+.campaign-slide__image { z-index: 1; object-fit: cover; object-position: right center; }
 .campaign-slide--charcoal-ad { background: radial-gradient(ellipse at 78% 45%, #6b8a5e 0%, #3d5a3a 32%, #1e3a28 76%); }
-.campaign-slide--charcoal-ad .campaign-slide__image { object-fit: cover; object-position: center; }
+.campaign-slide--charcoal-ad .campaign-slide__image { object-position: center; }
 .campaign-slide__shade { position: absolute; z-index: 2; inset: 0; pointer-events: none; background: linear-gradient(90deg, rgb(18 45 31 / 93%) 0%, rgb(18 45 31 / 82%) 35%, rgb(18 45 31 / 12%) 75%, transparent 100%); }
 .campaign-slide--family-ad .campaign-slide__shade { background: linear-gradient(90deg, rgb(23 39 24 / 66%) 0%, rgb(23 39 24 / 35%) 38%, transparent 72%); }
 .campaign-carousel__credit { width: min(100% - 1.5rem, 96rem); margin: -1.5rem auto 2.75rem; padding-right: .25rem; color: var(--color-muted); font-size: .75rem; text-align: right; }
@@ -601,8 +600,7 @@ button { color: inherit; font: inherit; }
 @media (max-width: 700px) {
   .campaign-carousel { width: calc(100% - 1rem); margin-block: .5rem 1.5rem; border-radius: 4px; }
   .campaign-carousel__slides { height: auto; aspect-ratio: 16 / 9; min-height: 0; }
-  .campaign-slide__image { object-fit: contain; object-position: center; }
-  .campaign-slide--countdown .campaign-slide__image { object-fit: contain; object-position: center; }
+  .campaign-slide__image { object-fit: cover; object-position: center; }
   .campaign-slide__shade { background: linear-gradient(180deg, rgb(18 45 31 / 94%) 0%, rgb(18 45 31 / 82%) 43%, rgb(18 45 31 / 12%) 100%); }
   .campaign-slide__copy { top: 1rem; left: 1rem; width: min(65%, 26rem); transform: none; }
   .campaign-slide__copy .eyebrow { margin-bottom: .45rem; font-size: .65rem; }

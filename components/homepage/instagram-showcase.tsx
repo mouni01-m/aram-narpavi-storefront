@@ -1,7 +1,6 @@
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { SectionHeading } from "@/components/homepage/section-heading";
-import { imageAssets } from "@/lib/content/image-assets";
 import { getOptionalImage } from "@/lib/content/optional-image";
 import { OptionalImage } from "@/components/ui/optional-image";
 

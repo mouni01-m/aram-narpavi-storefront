@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { DiwaliCountdown } from "@/components/homepage/diwali-countdown";
 
 type Slide = {
   eyebrow: string;
@@ -13,51 +14,55 @@ type Slide = {
   href: string;
   cta: string;
   theme: string;
-  shadeAlign?: "left" | "right";
+  copyClassName?: string;
+  countdown?: boolean;
 };
+
+const CAMPAIGN_CREDIT = "Campaign artwork by Aram Narpavi Herbals";
 
 const slides: Slide[] = [
   {
     eyebrow: "Aram Narpavi Herbals",
     title: "Nature's touch. A fresh start.",
-    description: "Gentle, charcoal-infused herbal soap for a clean, refreshed feel.",
-    image: "/images/banners/desktop-banner.webp",
-    alt: "Aram Narpavi Charcoal Soap campaign — botanical herbal soap for daily care",
+    description: "Discover our Charcoal Soap.",
+    image: "/images/home/campaigns/charcoal-soap-ad.png",
+    alt: "Woman holding Aram Narpavi Charcoal Soap in a botanical setting",
     href: "/products/charcoal-soap",
     cta: "Discover Charcoal Soap",
     theme: "charcoal-ad",
-    shadeAlign: "left",
   },
   {
     eyebrow: "Goodness for everyday moments",
     title: "Goodness that brings us together.",
-    description: "Explore Aram Narpavi Herbals ABC Malt — a traditional mix for the whole family.",
-    image: "/images/banners/promotional-banner.webp",
+    description: "Explore Aram Narpavi Herbals ABC Malt.",
+    image: "/images/home/campaigns/abc-malt-family.png",
     alt: "Indian family sharing ABC Malt drinks with an Aram Narpavi ABC Malt pouch",
     href: "/products/abc-malt",
     cta: "Discover ABC Malt",
     theme: "family-ad",
-    shadeAlign: "left",
   },
   {
-    eyebrow: "Heritage Sale · Limited time",
-    title: "Heritage Sale. Natural favourites, thoughtfully priced.",
-    description: "Explore selected herbal and pantry favourites during the Heritage Sale. Verified savings shown on eligible products.",
-    image: "/images/banners/festival-banner.webp",
-    alt: "Aram Narpavi Heritage Sale campaign with herbal products and festive styling",
-    href: "/heritage-sale",
-    cta: "Explore the Heritage Sale",
-    theme: "heritage-sale",
-    shadeAlign: "left",
+    eyebrow: "Diwali Special · November 6, 2026",
+    title: "Celebrate Diwali. Share natural goodness.",
+    description: "Explore thoughtful herbal favourites for the festive season.",
+    image: "/images/home/campaigns/diwali-goodness.png",
+    alt: "Aram Narpavi Diwali campaign with ABC Malt, soap, herbal oils, and festive lamps",
+    href: "/shop",
+    cta: "Explore our products",
+    theme: "countdown",
+    copyClassName: "campaign-slide__copy--diwali",
+    countdown: true,
   },
 ];
 
 const AUTOPLAY_MS = 4000;
+const SWIPE_THRESHOLD_PX = 40;
 
 export function HomepageHero() {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const swipeStartX = useRef<number | null>(null);
 
   const move = useCallback((direction: number) => {
     setActive((current) => (current + direction + slides.length) % slides.length);
@@ -75,14 +80,13 @@ export function HomepageHero() {
     };
   }, [paused]);
 
-  const swipeStartX = useRef<number | null>(null);
-
   const onKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
     if (event.key === "ArrowRight") { event.preventDefault(); move(1); }
     if (event.key === "ArrowLeft") { event.preventDefault(); move(-1); }
   };
 
   return (
+    <>
     <section
       className="home-hero campaign-carousel"
       aria-roledescription="carousel"
@@ -98,7 +102,7 @@ export function HomepageHero() {
         const end = event.changedTouches[0]?.clientX;
         swipeStartX.current = null;
         if (start === null || end === undefined) return;
-        if (Math.abs(end - start) > 40) move(end < start ? 1 : -1);
+        if (Math.abs(end - start) > SWIPE_THRESHOLD_PX) move(end < start ? 1 : -1);
       }}
     >
       <div className="campaign-carousel__slides" aria-live="off">
@@ -119,10 +123,13 @@ export function HomepageHero() {
               className="campaign-slide__image"
             />
             <div className="campaign-slide__shade" aria-hidden="true" />
-            <div className="campaign-slide__copy">
-              <p className="eyebrow">{slide.eyebrow}</p>
-              {index === 0 ? <h1>{slide.title}</h1> : <h2>{slide.title}</h2>}
-              <p className="campaign-slide__description">{slide.description}</p>
+            <div className={`campaign-slide__copy${slide.copyClassName ? ` ${slide.copyClassName}` : ""}`}>
+              <div>
+                <p className="eyebrow">{slide.eyebrow}</p>
+                {index === 0 ? <h1>{slide.title}</h1> : <h2>{slide.title}</h2>}
+                <p className="campaign-slide__description">{slide.description}</p>
+              </div>
+              {slide.countdown ? <DiwaliCountdown /> : null}
               <Link className="button campaign-slide__cta" href={slide.href}>
                 {slide.cta}<span aria-hidden="true">→</span>
               </Link>
@@ -146,5 +153,7 @@ export function HomepageHero() {
         ))}
       </div>
     </section>
+    <p className="campaign-carousel__credit">{CAMPAIGN_CREDIT}</p>
+    </>
   );
 }

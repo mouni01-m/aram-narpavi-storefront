@@ -694,6 +694,12 @@ h1 { font-size: clamp(2.65rem, 5.8vw, 5rem); }
 .brand-logo-frame { position: relative; width: 11rem; height: 2.8rem; display: block; }
 .site-footer .brand-logo-frame { width: 12.5rem; height: 3.4rem; padding: .35rem .6rem; border-radius: 8px; background: var(--color-ivory); box-sizing: border-box; }
 .brand-logo-frame img { object-fit: contain; object-position: left center; }
+.site-header .brand-logo-frame { width: 11.5rem; height: 3.1rem; padding: .3rem .6rem; border-radius: 8px; background: var(--color-peach); box-sizing: border-box; }
+.product-card-price { display: grid; gap: .15rem; margin: 0; }
+.product-card-price strong { color: var(--color-deep-green); font-size: 1.125rem; }
+.product-card-price span { color: var(--color-muted); font-size: .8125rem; }
+.product-tentative-price { margin: 0 0 .5rem; }
+.product-tentative-price strong { color: var(--color-deep-green); font-size: 1.25rem; }
 .brand-logo-prefetch { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
 .final-cta__copy { max-width: 25rem; }
 .final-cta__copy p { margin: .65rem 0 0; color: #edf0ea; }

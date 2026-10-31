@@ -32,7 +32,8 @@ export function ProductDetailPage({ routeKey }: { routeKey: string }) {
             )}
             <div className="product-commerce-boundary" aria-label="Purchase information status">
               <h2>Purchase information</h2>
-              <p>Price, availability and purchase options will appear only after the product record and commerce connection are verified.</p>
+              {product.tentativePriceInr !== null ? <p className="product-tentative-price"><strong>₹{product.tentativePriceInr}</strong>{product.packSize ? ` · ${product.packSize}` : ""} · tentative, to be confirmed before orders open.</p> : null}
+              <p>Availability and purchase options will appear once the product record and commerce connection are verified.</p>
             </div>
             <div className="preview-cart-action" aria-labelledby="preview-cart-action-heading">
               <h2 id="preview-cart-action-heading">Try the local cart prototype</h2>

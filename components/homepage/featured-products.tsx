@@ -17,7 +17,7 @@ export function FeaturedProducts() {
           Start with a few names from the developing range. Verified specifications, pricing and availability will be added once confirmed.
         </p>
         <div className="product-preview-grid">
-          {catalogPreviewProducts.map((product, index) => <ProductCard key={product.name} product={product} index={index} />)}
+          {catalogPreviewProducts.slice(0, 4).map((product, index) => <ProductCard key={product.name} product={product} index={index} />)}
         </div>
         <p className="catalog-more-link"><Link className="text-link" href="/shop">Browse and filter all preview names →</Link></p>
       </Container>

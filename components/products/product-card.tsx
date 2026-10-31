@@ -12,7 +12,10 @@ export function ProductCard({ product, index }: { product: PreviewProduct; index
       </Link>
       <div className="product-preview-card__body">
         <h3><Link href={`/products/${product.routeKey}`}>{product.name}</Link></h3>
-        <span className="preview-note">Details and pricing awaiting verification</span>
+        <p className="product-card-price">
+          {product.tentativePriceInr !== null ? <strong>₹{product.tentativePriceInr}</strong> : null}
+          <span>{[product.packSize, product.tentativePriceInr !== null ? "tentative price" : null].filter(Boolean).join(" · ")}</span>
+        </p>
         <Link className="product-preview-link" href={`/products/${product.routeKey}`}>View product details <span aria-hidden="true">→</span></Link>
       </div>
     </article>

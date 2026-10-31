@@ -11,6 +11,7 @@
     "test:cart": "node --test lib/cart/cart-state.test.cjs"
   },
   "dependencies": {
+    "@netlify/plugin-nextjs": "^5.16.5",
     "next": "16.4.0",
     "react": "19.3.0",
     "react-dom": "19.3.0"

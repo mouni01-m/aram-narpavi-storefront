@@ -551,23 +551,20 @@ button { color: inherit; font: inherit; }
 .analytics-consent > div { display: flex; justify-content: flex-end; gap: .6rem; margin-top: .85rem; }
 
 /* Homepage campaign carousel */
-.campaign-carousel { position: relative; width: min(100% - 1.5rem, 96rem); margin: 1rem auto 2.75rem; overflow: hidden; border-radius: 6px; background: #e9e2d2; }
-.campaign-carousel__slides { position: relative; height: clamp(28rem, 64vh, 40rem); }
-.campaign-slide { position: absolute; inset: 0; overflow: hidden; opacity: 0; visibility: hidden; transition: opacity .55s ease, visibility .55s; }
-.campaign-slide.is-active { z-index: 1; opacity: 1; visibility: visible; }
-.campaign-slide__image { z-index: 1; object-fit: cover; object-position: right center; }
-.campaign-slide--charcoal-ad { background: radial-gradient(ellipse at 78% 45%, #6b8a5e 0%, #3d5a3a 32%, #1e3a28 76%); }
-.campaign-slide--charcoal-ad .campaign-slide__image { object-position: center; }
-.campaign-slide__shade { position: absolute; z-index: 2; inset: 0; pointer-events: none; background: linear-gradient(90deg, rgb(18 45 31 / 93%) 0%, rgb(18 45 31 / 82%) 35%, rgb(18 45 31 / 12%) 75%, transparent 100%); }
-.campaign-slide--family-ad .campaign-slide__shade { background: linear-gradient(90deg, rgb(23 39 24 / 66%) 0%, rgb(23 39 24 / 35%) 38%, transparent 72%); }
+.campaign-carousel { position: relative; width: min(100% - 1.5rem, 96rem); margin: 1rem auto 2.75rem; overflow: hidden; border: 1px solid var(--color-border); border-radius: 6px; background: #fbf6ec; }
+.campaign-carousel__slides { position: relative; }
+.campaign-slide { position: absolute; top: 0; left: 0; width: 100%; opacity: 0; visibility: hidden; transition: opacity .55s ease, visibility .55s; }
+.campaign-slide.is-active { position: relative; z-index: 1; opacity: 1; visibility: visible; }
+.campaign-slide__image { display: block; width: 100%; height: auto; }
 .campaign-carousel__credit { width: min(100% - 1.5rem, 96rem); margin: -1.5rem auto 2.75rem; padding-right: .25rem; color: var(--color-muted); font-size: .75rem; text-align: right; }
-.campaign-slide__copy { position: absolute; z-index: 2; top: 50%; left: clamp(1.5rem, 6vw, 5.5rem); width: min(44%, 34rem); transform: translateY(-50%); color: #fffdf5; }
-.campaign-slide__copy .eyebrow { margin: 0 0 .75rem; color: #f2d49a; font-size: .75rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
-.campaign-slide__copy h1 { max-width: 11ch; margin: 0; color: inherit; font-family: var(--font-heading); font-size: clamp(2.2rem, 4vw, 4.4rem); line-height: 1.02; }
-.campaign-slide__copy h2 { max-width: 11ch; margin: 0; color: inherit; font-family: var(--font-heading); font-size: clamp(2.2rem, 4vw, 4.4rem); font-weight: 700; line-height: 1.02; }
-.campaign-slide__description { max-width: 31rem; margin: 1rem 0 1.35rem; color: rgb(255 253 245 / 90%); font-size: clamp(.9rem, 1.25vw, 1.05rem); line-height: 1.55; }
-.campaign-slide__cta { display: inline-flex; align-items: center; gap: .9rem; border-color: #f3e8d1; background: #f7f1e4; color: #173e2b; }
-.campaign-slide__cta:hover { background: #fff; }
+.campaign-slide__caption { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.25rem 2rem; padding: clamp(1.25rem, 3vw, 2.25rem) clamp(1.25rem, 4vw, 3.5rem); color: #173e2b; }
+.campaign-slide__text { max-width: 40rem; }
+.campaign-slide__text .eyebrow { margin: 0 0 .6rem; color: #4d6b3c; font-size: .75rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
+.campaign-slide__text h1, .campaign-slide__text h2 { margin: 0; color: #173e2b; font-family: var(--font-heading); font-size: clamp(1.7rem, 3vw, 2.6rem); line-height: 1.1; }
+.campaign-slide__description { max-width: 34rem; margin: .75rem 0 0; color: #4a5548; font-size: clamp(.95rem, 1.2vw, 1.05rem); line-height: 1.55; }
+.campaign-slide__cta { display: inline-flex; align-items: center; gap: .9rem; }
+.campaign-slide__countdown { padding: 1rem 1.25rem; border-radius: 6px; background: #173e2b; }
+.campaign-slide__countdown .campaign-countdown { margin: 0; }
 .campaign-countdown { margin: .9rem 0 1.2rem; }
 .campaign-countdown__label { display: block; margin-bottom: .55rem; color: #f6e5c4; font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; }
 .campaign-countdown__units { display: flex; gap: .5rem; }
@@ -575,36 +572,25 @@ button { color: inherit; font: inherit; }
 .campaign-countdown__units strong { font-variant-numeric: tabular-nums; font-size: 1.35rem; line-height: 1.1; }
 .campaign-countdown__units small { color: #f2d49a; font-size: .62rem; text-transform: uppercase; }
 .campaign-countdown__launched { max-width: 20rem; margin: 0; color: #f6e5c4; }
-.campaign-slide__copy--diwali { top: auto; bottom: 3rem; left: clamp(1rem, 4vw, 3.5rem); width: min(42%, 34rem); padding: clamp(.75rem, 2vw, 1.4rem); transform: none; border: 1px solid rgb(242 207 137 / 58%); border-radius: 6px; background: rgb(9 46 30 / 93%); box-shadow: 0 12px 35px rgb(0 0 0 / 25%); }
-.campaign-slide__copy--diwali .campaign-countdown { margin: 0 0 .8rem; }
-.campaign-carousel__arrow { position: absolute; z-index: 3; top: 50%; display: grid; width: 2.7rem; height: 2.7rem; place-items: center; transform: translateY(-50%); border: 1px solid rgb(255 255 255 / 70%); border-radius: 50%; background: rgb(19 47 32 / 55%); color: white; cursor: pointer; font-size: 1.7rem; line-height: 1; }
-.campaign-carousel__arrow:hover { background: #173e2b; }
-.campaign-carousel__arrow--prev { left: 1rem; }
-.campaign-carousel__arrow--next { right: 1rem; }
-.campaign-carousel__controls { position: absolute; z-index: 3; right: 0; bottom: .8rem; left: 0; display: flex; justify-content: center; gap: .3rem; }
-.campaign-carousel__controls button { display: grid; width: 2.2rem; height: 1.6rem; place-items: center; border: 0; background: transparent; cursor: pointer; }
-.campaign-carousel__controls button span { width: .55rem; height: .55rem; border-radius: 50%; background: rgb(255 255 255 / 62%); transition: width .2s ease, border-radius .2s ease, background .2s ease; }
-.campaign-carousel__controls button[aria-current="true"] span { width: 1.5rem; border-radius: 1rem; background: #f6d18f; }
+.campaign-carousel__nav { display: flex; align-items: center; justify-content: center; gap: 1rem; padding: .75rem; border-top: 1px solid var(--color-border); background: #f5ecdc; }
+.campaign-carousel__arrow { display: grid; width: 2.5rem; height: 2.5rem; place-items: center; border: 1px solid #173e2b; border-radius: 50%; background: #fff; color: #173e2b; cursor: pointer; font-size: 1.5rem; line-height: 1; transition: background .2s ease, color .2s ease; }
+.campaign-carousel__arrow:hover { background: #173e2b; color: #fff; }
+.campaign-carousel__controls { display: flex; align-items: center; gap: .25rem; }
+.campaign-carousel__controls button { display: grid; width: 2rem; height: 1.6rem; place-items: center; border: 0; background: transparent; cursor: pointer; }
+.campaign-carousel__controls button span { width: .55rem; height: .55rem; border-radius: 50%; background: #9db58a; transition: width .2s ease, border-radius .2s ease, background .2s ease; }
+.campaign-carousel__controls button[aria-current="true"] span { width: 1.5rem; border-radius: 1rem; background: #e98232; }
 .campaign-carousel button:focus-visible, .campaign-carousel a:focus-visible { outline: 3px solid #e4ae59; outline-offset: 3px; }
 .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; clip-path: inset(50%); }
 @media (max-width: 700px) {
   .campaign-carousel { width: calc(100% - 1rem); margin-block: .5rem 1.5rem; border-radius: 4px; }
-  .campaign-carousel__slides { height: auto; aspect-ratio: 16 / 9; min-height: 0; }
-  .campaign-slide__image { object-fit: cover; object-position: center; }
-  .campaign-slide__shade { background: linear-gradient(180deg, rgb(18 45 31 / 94%) 0%, rgb(18 45 31 / 82%) 43%, rgb(18 45 31 / 12%) 100%); }
-  .campaign-slide__copy { top: 1rem; left: 1rem; width: min(65%, 26rem); transform: none; }
-  .campaign-slide__copy .eyebrow { margin-bottom: .45rem; font-size: .65rem; }
-  .campaign-slide__copy h1, .campaign-slide__copy h2 { max-width: 13ch; font-size: clamp(1.15rem, 5vw, 2rem); }
-  .campaign-slide__description { max-width: 28rem; margin: .4rem 0 .6rem; font-size: clamp(.68rem, 2.7vw, .88rem); }
-  .campaign-countdown { margin: .55rem 0 .75rem; }
+  .campaign-slide__caption { padding: 1.1rem 1rem; }
+  .campaign-slide__text h1, .campaign-slide__text h2 { font-size: clamp(1.4rem, 6.5vw, 1.8rem); }
+  .campaign-slide__description { font-size: .95rem; }
+  .campaign-slide__cta { width: 100%; justify-content: center; }
+  .campaign-slide__countdown { width: 100%; padding: .8rem; }
   .campaign-countdown__units { gap: .3rem; }
-  .campaign-countdown__units span { min-width: 3.1rem; padding: .35rem; }
+  .campaign-countdown__units span { min-width: 3rem; padding: .35rem; }
   .campaign-countdown__units strong { font-size: 1.15rem; }
-  .campaign-slide__copy--diwali { bottom: 2.8rem; left: .55rem; width: min(70%, 24rem); padding: .55rem; }
-  .campaign-carousel__arrow { top: auto; bottom: .3rem; width: 2rem; height: 2rem; transform: none; }
-  .campaign-carousel__arrow--prev { left: .55rem; }
-  .campaign-carousel__arrow--next { right: .55rem; }
-  .campaign-carousel__controls { bottom: .85rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   .campaign-slide, .campaign-carousel__controls button span { transition: none; }

@@ -6,15 +6,16 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { DiwaliCountdown } from "@/components/homepage/diwali-countdown";
 
 type Slide = {
+  id: string;
   eyebrow: string;
   title: string;
   description: string;
   image: string;
+  width: number;
+  height: number;
   alt: string;
   href: string;
   cta: string;
-  theme: string;
-  copyClassName?: string;
   countdown?: boolean;
 };
 
@@ -22,40 +23,45 @@ const CAMPAIGN_CREDIT = "Campaign artwork by Aram Narpavi Herbals";
 
 const slides: Slide[] = [
   {
+    id: "charcoal",
     eyebrow: "Aram Narpavi Herbals",
-    title: "Nature's touch. A fresh start.",
-    description: "Discover our Charcoal Soap.",
-    image: "/images/home/campaigns/charcoal-soap-ad.webp",
-    alt: "Woman holding Aram Narpavi Charcoal Soap in a botanical setting",
+    title: "Deep cleansing for fresh, glowing skin.",
+    description: "Discover our Charcoal Soap, hand made and inspired by nature.",
+    image: "/images/products/soaps/charcoal-soap-glow.webp",
+    width: 1900,
+    height: 696,
+    alt: "Woman washing her face with Aram Narpavi Charcoal Soap beside its box and lime slices",
     href: "/products/charcoal-soap",
     cta: "Discover Charcoal Soap",
-    theme: "charcoal-ad",
   },
   {
+    id: "family",
     eyebrow: "Goodness for everyday moments",
     title: "Goodness that brings us together.",
     description: "Explore Aram Narpavi Herbals ABC Malt.",
     image: "/images/home/campaigns/abc-malt-family.webp",
+    width: 1672,
+    height: 941,
     alt: "Indian family sharing ABC Malt drinks with an Aram Narpavi ABC Malt pouch",
     href: "/products/abc-malt",
     cta: "Discover ABC Malt",
-    theme: "family-ad",
   },
   {
+    id: "diwali",
     eyebrow: "Diwali Special · November 6, 2026",
     title: "Celebrate Diwali. Share natural goodness.",
     description: "Explore thoughtful herbal favourites for the festive season.",
     image: "/images/home/campaigns/diwali-goodness.webp",
+    width: 1916,
+    height: 821,
     alt: "Aram Narpavi Diwali campaign with ABC Malt, soap, herbal oils, and festive lamps",
     href: "/shop",
     cta: "Explore our products",
-    theme: "countdown",
-    copyClassName: "campaign-slide__copy--diwali",
     countdown: true,
   },
 ];
 
-const AUTOPLAY_MS = 4000;
+const AUTOPLAY_MS = 5000;
 const SWIPE_THRESHOLD_PX = 40;
 
 export function HomepageHero() {
@@ -105,11 +111,11 @@ export function HomepageHero() {
         if (Math.abs(end - start) > SWIPE_THRESHOLD_PX) move(end < start ? 1 : -1);
       }}
     >
-      <div className="campaign-carousel__slides" aria-live="off">
+      <div className="campaign-carousel__slides">
         {slides.map((slide, index) => (
           <article
-            key={slide.theme}
-            className={`campaign-slide campaign-slide--${slide.theme}${active === index ? " is-active" : ""}`}
+            key={slide.id}
+            className={`campaign-slide${active === index ? " is-active" : ""}`}
             aria-roledescription="slide"
             aria-label={`${index + 1} of ${slides.length}`}
             aria-hidden={active !== index}
@@ -117,40 +123,42 @@ export function HomepageHero() {
             <Image
               src={slide.image}
               alt={slide.alt}
-              fill
+              width={slide.width}
+              height={slide.height}
               priority={index === 0}
               sizes="(max-width: 700px) 100vw, 96vw"
               className="campaign-slide__image"
             />
-            <div className="campaign-slide__shade" aria-hidden="true" />
-            <div className={`campaign-slide__copy${slide.copyClassName ? ` ${slide.copyClassName}` : ""}`}>
-              <div>
+            <div className="campaign-slide__caption">
+              <div className="campaign-slide__text">
                 <p className="eyebrow">{slide.eyebrow}</p>
                 {index === 0 ? <h1>{slide.title}</h1> : <h2>{slide.title}</h2>}
                 <p className="campaign-slide__description">{slide.description}</p>
               </div>
-              {slide.countdown ? <DiwaliCountdown /> : null}
-              <Link className="button campaign-slide__cta" href={slide.href}>
+              {slide.countdown ? <div className="campaign-slide__countdown"><DiwaliCountdown /></div> : null}
+              <Link className="button campaign-slide__cta" href={slide.href} tabIndex={active === index ? 0 : -1}>
                 {slide.cta}<span aria-hidden="true">→</span>
               </Link>
             </div>
           </article>
         ))}
       </div>
-      <button className="campaign-carousel__arrow campaign-carousel__arrow--prev" type="button" aria-label="Previous campaign" onClick={() => move(-1)}>‹</button>
-      <button className="campaign-carousel__arrow campaign-carousel__arrow--next" type="button" aria-label="Next campaign" onClick={() => move(1)}>›</button>
-      <div className="campaign-carousel__controls" aria-label="Choose campaign slide">
-        {slides.map((slide, index) => (
-          <button
-            key={slide.theme}
-            type="button"
-            aria-label={`Show slide ${index + 1}: ${slide.title}`}
-            aria-current={active === index ? "true" : undefined}
-            onClick={() => setActive(index)}
-          >
-            <span />
-          </button>
-        ))}
+      <div className="campaign-carousel__nav">
+        <button className="campaign-carousel__arrow" type="button" aria-label="Previous campaign" onClick={() => move(-1)}>‹</button>
+        <div className="campaign-carousel__controls" aria-label="Choose campaign slide">
+          {slides.map((slide, index) => (
+            <button
+              key={slide.id}
+              type="button"
+              aria-label={`Show slide ${index + 1}: ${slide.title}`}
+              aria-current={active === index ? "true" : undefined}
+              onClick={() => setActive(index)}
+            >
+              <span />
+            </button>
+          ))}
+        </div>
+        <button className="campaign-carousel__arrow" type="button" aria-label="Next campaign" onClick={() => move(1)}>›</button>
       </div>
     </section>
     <p className="campaign-carousel__credit">{CAMPAIGN_CREDIT}</p>

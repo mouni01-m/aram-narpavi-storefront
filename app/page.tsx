@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { CategorySection } from "@/components/homepage/category-section";
 import { CombosBand } from "@/components/homepage/combos-band";
 import { FeaturedProducts } from "@/components/homepage/featured-products";
+import { FestiveUnder499Section } from "@/components/homepage/festive-under-499-section";
 import { FinalCta } from "@/components/homepage/final-cta";
 import { HomepageHero } from "@/components/homepage/hero";
 import { InstagramShowcase } from "@/components/homepage/instagram-showcase";
@@ -31,6 +32,7 @@ export default function Home() {
       <HomepageHero />
       <TrustStrip />
       <CategorySection />
+      <FestiveUnder499Section />
       <FeaturedProducts />
       <CombosBand />
       <PhilosophySection />

@@ -622,18 +622,19 @@ button { color: inherit; font: inherit; }
 /* ARAM NARPAVI — shared editorial storefront layer. Optional image elements sit above
    the designed botanical fallbacks, so adding approved files never changes layout. */
 :root {
-  --color-herbal: #3d7a4f;
-  --color-deep-green: #1f4a33;
-  --color-beige: #fbeee2;
-  --color-ivory: #fdf9f3;
-  --color-gold: #d9692b;
-  --color-ink: #2a2e28;
-  --color-muted: #5f655c;
-  --color-border: #ecdcc9;
-  --color-orange: #e98232;
-  --color-orange-dark: #d6701f;
-  --color-peach: #fbe3d0;
+  --color-herbal: #47863d;
+  --color-deep-green: #194b35;
+  --color-beige: #f9e4ce;
+  --color-ivory: #fff8ee;
+  --color-gold: #d58a24;
+  --color-ink: #243328;
+  --color-muted: #5c665b;
+  --color-border: #e8d8c5;
+  --color-orange: #f39a24;
+  --color-orange-dark: #d98216;
+  --color-peach: #f9e4ce;
   --color-leaf: #a8c686;
+  --color-leaf-soft: #eef5e6;
   --space-section: clamp(3.5rem, 7vw, 6rem);
   --radius-card: 4px;
   --radius-control: 3px;
@@ -714,7 +715,7 @@ h1 { font-size: clamp(2.65rem, 5.8vw, 5rem); }
 .philosophy-media { border-color: rgb(241 236 223 / 28%); }
 .information-point { border-color: #c6b487; }
 .final-cta { background: var(--color-deep-green); }
-.site-footer { padding-block: 1rem; }
+.site-footer { padding-block: 1rem; background: var(--color-deep-green); color: var(--color-ivory); }
 .footer-main { padding-block: 3.5rem; }
 .footer-nav a, .footer-nav span { transition: color var(--motion-fast) ease; }
 .footer-bottom { font-size: .75rem; }
@@ -868,7 +869,7 @@ h1 { font-size: clamp(2.65rem, 5.8vw, 5rem); }
 .button--light:hover { border-color: var(--color-peach); background: var(--color-peach); color: var(--color-deep-green); }
 .home-hero { background: var(--color-beige); }
 .instagram-section { background: var(--color-leaf); }
-.product-preview-card { border: 1px solid var(--color-border); border-radius: 12px; background: #fff; box-shadow: 0 1px 2px rgb(42 46 40 / 6%); transition: transform var(--motion-standard) var(--ease-natural), box-shadow var(--motion-standard) var(--ease-natural); }
+.product-preview-card { border: 1px solid var(--color-border); border-radius: 12px; background: var(--color-ivory); box-shadow: 0 1px 2px rgb(25 75 53 / 8%); transition: transform var(--motion-standard) var(--ease-natural), box-shadow var(--motion-standard) var(--ease-natural); }
 .product-preview-card:hover { transform: translateY(-4px); border-color: var(--color-leaf); box-shadow: 0 16px 30px -16px rgb(42 46 40 / 28%); }
 .product-preview-card:focus-within { box-shadow: 0 16px 30px -16px rgb(42 46 40 / 28%); }
 .product-photo-placeholder { border-radius: 0; }
@@ -890,3 +891,35 @@ h1 { font-size: clamp(2.65rem, 5.8vw, 5rem); }
 .social-links svg { width: 1.125rem; height: 1.125rem; fill: currentColor; }
 .site-footer .social-links { margin-top: .75rem; }
 .site-footer .social-links a:hover { background: var(--color-orange); }
+
+/* Logo-inspired homepage surfaces */
+body { background: var(--color-ivory); }
+.site-header { background: rgb(255 248 238 / 96%); border-bottom-color: #ead9c3; box-shadow: 0 4px 18px rgb(25 75 53 / 5%); }
+.site-header .brand-logo-frame { background: var(--color-ivory); border: 1px solid #ead9c3; }
+.home-hero { background: linear-gradient(135deg, var(--color-ivory) 0%, #fff4e5 58%, var(--color-peach) 100%); }
+.campaign-carousel { border-color: #e7d4bd; background: var(--color-ivory); box-shadow: 0 14px 34px rgb(25 75 53 / 10%); }
+.trust-strip { background: var(--color-peach); border-block: 1px solid #efd0ae; }
+#categories { position: relative; overflow: hidden; background: var(--color-ivory); }
+#categories::before { position: absolute; top: -5rem; right: -4rem; width: 16rem; height: 16rem; border: 1px solid rgb(71 134 61 / 16%); border-radius: 50%; content: ""; }
+#categories::after { position: absolute; right: 2rem; bottom: 1.5rem; width: 8rem; height: 2rem; border-top: 1px solid rgb(243 154 36 / 30%); border-radius: 50%; content: ""; transform: rotate(-14deg); }
+#categories > .container { position: relative; z-index: 1; }
+.category-tile { border-color: #d9e4cf; background: var(--color-leaf-soft); }
+.category-tile--mixes { background: #f8eddf; }
+.category-tile--pantry { background: #f2f5e9; }
+.category-tile--oils { background: #f9e4ce; }
+.festive-section { background: linear-gradient(180deg, #fff3e3 0%, var(--color-peach) 100%); }
+.featured-section { background: #f4f7ef; }
+.product-preview-card { background: var(--color-ivory); }
+.combos-band { background: var(--color-peach); color: var(--color-deep-green); border-block: 1px solid #edc59f; }
+.combos-band__cta { background: var(--color-deep-green); border-color: var(--color-deep-green); color: var(--color-ivory); }
+.philosophy-section { background: var(--color-deep-green); }
+.instagram-section { background: var(--color-leaf-soft); }
+.instagram-tile { background: #e4eedc; border: 1px solid #d5e2c9; }
+.final-cta { background: var(--color-herbal); }
+.site-footer { border-top: 5px solid var(--color-orange); }
+.catalog-page, .product-detail-page, .information-page { background: var(--color-ivory); }
+.catalog-products, .faq-section { background: #f4f7ef; }
+
+@media (prefers-reduced-motion: reduce) {
+  #categories::before, #categories::after { display: none; }
+}

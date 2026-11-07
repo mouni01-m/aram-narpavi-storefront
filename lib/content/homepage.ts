@@ -64,6 +64,29 @@ export const homepageContent = {
   ],
 } as const;
 
+/**
+ * Cities and platforms are owner-supplied. No store locator, addresses or marketplace links
+ * have been verified yet; see docs/STORE_AVAILABILITY.md before adding any.
+ */
+export const storeAvailability = {
+  sectionTitle: "Shop by Location",
+  heading: "Looking for us? Find a store near you.",
+  cities: ["Chennai", "Coimbatore", "Bangalore", "Erode", "Hosur", "Hyderabad", "Madurai", "Pondicherry"],
+  actionLabel: "Find a Store",
+  locatorHref: "/contact",
+  note: "Contact our team by email or WhatsApp for store details.",
+  // Brand photo until a real store photograph is supplied, so it carries no store description.
+  image: { src: "/images/sections/wellness-collection.webp", alt: "" },
+  onlineTitle: "Also Available Online",
+  onlineSubtitle: "Shop Aram Narpavi Herbals on your favourite platforms.",
+} as const;
+
+export const onlinePlatforms = [
+  { name: "Amazon", logo: { src: "/images/brand/platforms/amazon.webp", width: 398, height: 120 }, href: null },
+  { name: "Flipkart", logo: { src: "/images/brand/platforms/flipkart.webp", width: 455, height: 120 }, href: null },
+  { name: "Meesho", logo: { src: "/images/brand/platforms/meesho.webp", width: 120, height: 120 }, href: null },
+] as const;
+
 export const homepageMeta = {
   title: "Aram Narpavi Herbals | Herbal soaps and pantry favourites",
   description: "Discover Aram Narpavi Herbals: traditional herbal soaps, personal-care essentials and pantry favourites, with clear product details for everyday routines.",

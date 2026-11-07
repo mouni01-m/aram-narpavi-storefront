@@ -3,6 +3,46 @@
  * promotion are live (see lib/commerce/pricing.ts); otherwise the neutral "preview"
  * copy is shown so no saving is implied.
  */
+/**
+ * Draft one-line notes for the combo popup, until verified descriptions are supplied.
+ * They say what a product is and make no health or benefit claims.
+ */
+export const comboItemNotes: Readonly<Record<string, string>> = {
+  "charcoal-soap": "A charcoal bath soap for everyday use.",
+  "manjistha-soap": "A bath soap featuring manjistha, a traditional herb.",
+  "kuppameni-soap": "A bath soap featuring kuppameni, a traditional herb.",
+  "nalangumavu-soap": "A soap inspired by nalangumavu, the traditional bath powder.",
+  "multani-mitti-soap": "A bath soap made with multani mitti (fuller's earth).",
+  "abc-malt": "A malt drink mix of apple, beetroot and carrot.",
+  "beetroot-malt": "A malt drink mix made with beetroot.",
+  "karuppu-kavuni-kanji-mix": "A porridge mix made with karuppu kavuni black rice.",
+  "instant-moringa-soup-mix": "An instant soup mix made with moringa.",
+  honey: "Honey for the everyday pantry.",
+  gulkand: "A sweet preserve made from rose petals.",
+  asafoetida: "Hing, a traditional kitchen seasoning.",
+  "desi-ghee": "Clarified butter for everyday cooking.",
+  "coconut-oil": "Coconut oil for everyday routines.",
+  "herbal-pain-balm": "A herbal balm in a compact jar.",
+  "karpooravalli-thailam": "A traditional oil made with karpooravalli.",
+};
+
+/** Draft search keywords per collection. They describe what a product is, not what it does. */
+export const collectionSearchKeywords: Readonly<Record<string, readonly string[]>> = {
+  "herbal-soaps": ["soap", "bath", "skin care", "skincare"],
+  "traditional-mixes": ["mix", "malt", "drink", "porridge", "soup", "nutrition"],
+  "pantry-essentials": ["pantry", "kitchen", "food"],
+  "oils-and-balms": ["oil", "balm"],
+};
+
+export const productSearchKeywords: Readonly<Record<string, readonly string[]>> = {
+  asafoetida: ["perungayam"],
+  gulkand: ["rose"],
+  "coconut-oil": ["hair", "hair care"],
+};
+
+/** Rotating header placeholder terms. Each must return at least one product. */
+export const searchSuggestions: readonly string[] = ["Charcoal Soap", "ABC Malt", "Honey", "Herbal Pain Balm", "Skin Care", "Coconut Oil", "Gulkand"];
+
 export const saleContent = {
   combos: {
     heading: "Made to Go Together",

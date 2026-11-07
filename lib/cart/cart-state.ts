@@ -28,11 +28,14 @@ export type CartEligibleBundle = {
   id: string;
   name: string;
   items: readonly { productId: string; quantity: number }[];
+  /** Where the cart line links, when the combo is not in the main combo section. */
+  cartHref?: string;
 };
 
 /** Combo lines use a prefixed id so they can never collide with a product id. */
 export const BUNDLE_ID_PREFIX = "bundle:";
 export const BUNDLE_HREF = "/#combos";
+export const FEATURED_BUNDLE_HREF = "/#new-arrival-offer";
 
 export const initialCartState: CartState = { items: [] };
 
@@ -43,7 +46,7 @@ export function isPositiveInteger(value: number): boolean {
 function isValidCartProduct(product: CartProduct | null): product is CartProduct {
   if (!product || !product.id || !product.name) return false;
   if (product.id.startsWith(BUNDLE_ID_PREFIX)) {
-    return product.href === BUNDLE_HREF && Boolean(product.includes?.length) && product.includes!.every((item) => item.name && isPositiveInteger(item.quantity));
+    return (product.href === BUNDLE_HREF || product.href === FEATURED_BUNDLE_HREF) && Boolean(product.includes?.length) && product.includes!.every((item) => item.name && isPositiveInteger(item.quantity));
   }
   return product.href === `/products/${product.id}` && !product.includes;
 }
@@ -69,7 +72,7 @@ export function resolvePreviewCartBundle(bundleId: string, bundles: readonly Car
   return {
     id: `${BUNDLE_ID_PREFIX}${bundle.id}`,
     name: bundle.name,
-    href: BUNDLE_HREF,
+    href: bundle.cartHref ?? BUNDLE_HREF,
     image: items.find((item) => item.product?.image)?.product?.image ?? null,
     includes: items.map((item) => ({ name: item.product!.name, quantity: item.quantity })),
   };

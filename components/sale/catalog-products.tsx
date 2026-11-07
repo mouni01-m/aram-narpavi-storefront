@@ -4,11 +4,11 @@ import { previewCollections } from "@/lib/content/catalog-preview";
 
 /**
  * Product grid with images, prices, filters and cart actions, used by the homepage,
- * the shop and each collection page. Pass `collection` to lock it to one collection.
+ * the shop, each collection page and each concern page. Pass `collection` or `productIds` to narrow it.
  */
-export async function CatalogProducts({ collection, initialVisible }: { collection?: string; initialVisible?: number }) {
+export async function CatalogProducts({ collection, productIds, initialVisible }: { collection?: string; productIds?: readonly string[]; initialVisible?: number }) {
   const snapshot = await getSaleSnapshot();
-  const products = collection ? snapshot.products.filter((product) => product.collectionSlug === collection) : snapshot.products;
+  const products = snapshot.products.filter((product) => (!collection || product.collectionSlug === collection) && (!productIds || productIds.includes(product.id)));
   const collections = previewCollections
     .filter((option) => snapshot.products.some((product) => product.collectionSlug === option.slug))
     .map(({ slug, title }) => ({ slug, title }));

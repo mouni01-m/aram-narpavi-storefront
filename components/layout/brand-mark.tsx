@@ -1,20 +1,17 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
 import { imageAssets } from "@/lib/content/image-assets";
 
-/** Temporary wordmark fallback. Replace only when the approved brand asset is supplied. */
+/**
+ * The real Aram Narpavi logo, in its own colours and proportions. CSS sets only the height,
+ * so the width always follows the file. The footer places it on an ivory panel, because its
+ * green lettering is hard to read directly on forest green. See docs/BRAND_DESIGN.md.
+ */
 export function BrandMark() {
-  const [logoLoaded, setLogoLoaded] = useState(false);
+  const { src, width, height } = imageAssets.brand.logo;
   return (
-    <Link className="brand-mark" href="/" aria-label="Aram Narpavi Herbals home">
-      {logoLoaded ? <span className="brand-logo-frame"><Image src={imageAssets.brand.logo} alt="" fill sizes="180px" onError={() => setLogoLoaded(false)} /></span> : <>
-        <span className="brand-name">ARAM NARPAVI</span>
-        <span className="brand-descriptor">Herbals</span>
-      </>}
-      {!logoLoaded ? <Image className="brand-logo-prefetch" src={imageAssets.brand.logo} alt="" width={180} height={48} onLoad={() => setLogoLoaded(true)} onError={() => setLogoLoaded(false)} /> : null}
+    <Link className="brand-mark brand-mark--logo" href="/" aria-label="Aram Narpavi Herbals home">
+      <Image className="brand-logo" src={src} alt="" width={width} height={height} sizes="180px" loading="eager" />
     </Link>
   );
 }

@@ -61,6 +61,19 @@ export type BundleDefinition = {
   blockers: readonly string[];
 };
 
+/** The homepage's single featured combo, with its deadline and presentation. */
+export type FeaturedComboConfig = {
+  bundle: BundleDefinition;
+  /** Offer deadline: an ISO date with a time zone. */
+  endsAt: string;
+  /** Illustrative discount used only with provisional prices. */
+  previewDiscountPercent: number;
+  composition: { src: string; alt: string; width: number; height: number };
+  /** Hotspot position per product, as a percentage of the composition from its top-left. */
+  hotspots: Readonly<Record<string, { x: number; y: number }>>;
+  betterTogether: readonly string[];
+};
+
 /** Business ceiling recorded in docs/ENVIRONMENT_SETUP.md. */
 export const MAX_DISCOUNT_PERCENT = 15;
 

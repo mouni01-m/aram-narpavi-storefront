@@ -27,8 +27,21 @@ export const provisionalPricing: Readonly<Record<string, ProductPricing>> = {
   "karpooravalli-thailam": estimate(149, "100 ml"),
 };
 
-/** Illustrative combo discount used only with provisional prices. */
-export const ILLUSTRATIVE_BUNDLE_DISCOUNT_PERCENT = 15;
+/** Fallback illustrative combo discount, used only with provisional prices. */
+export const ILLUSTRATIVE_BUNDLE_DISCOUNT_PERCENT = 14;
+
+/** Illustrative discount per combo, varied around the 15% ceiling rather than a flat figure. */
+export const illustrativeBundlePercents: Readonly<Record<string, number>> = {
+  "herbal-soap-collection": 14,
+  "traditional-mix-trio": 13,
+  "heritage-pantry-set": 14,
+  "botanical-essentials-set": 15,
+  "herbal-skincare-combo": 13,
+  "hair-and-bath-care-combo": 13,
+  "traditional-nutrition-combo": 14,
+  "daily-wellness-combo": 13,
+  "herbal-essentials-combo": 14,
+};
 
 /**
  * Preview estimates show unless STOREFRONT_PRICING_MODE=official. Set that in

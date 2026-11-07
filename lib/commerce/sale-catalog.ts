@@ -1,5 +1,5 @@
 import type { PreviewProduct } from "../content/catalog-preview";
-import { getCampaignState, mergePricing, resolveBundleOffer, resolveIllustrativeBundle, resolveProductOffer, type BundleDefinition, type BundleOffer, type Campaign, type CampaignState, type PricingMode, type ProductPricing, type Promotion } from "./pricing";
+import { getCampaignState, mergePricing, resolveBundleOffer, resolveIllustrativeBundle, resolveProductOffer, type BundleDefinition, type BundleOffer, type Campaign, type CampaignState, type FeaturedComboConfig, type Paise, type PricingMode, type ProductPricing, type Promotion } from "./pricing";
 import type { SaleProductView } from "./sale-filters";
 
 export type SaleSnapshot = {
@@ -9,6 +9,15 @@ export type SaleSnapshot = {
   products: SaleProductView[];
   /** Bundles that may be shown: priced, illustrative (preview estimates) or labelled previews. */
   bundles: Exclude<BundleOffer, { kind: "ineligible" }>[];
+  featuredCombo?: FeaturedComboView | null;
+};
+
+export type FeaturedComboView = {
+  id: string;
+  /** unpriced: no approved or preview price, so no offer or countdown may be shown. */
+  state: "live" | "expired" | "unpriced";
+  isEstimate: boolean;
+  pricing: { referenceTotal: Paise; bundlePrice: Paise; savings: Paise; discountPercent: number } | null;
 };
 
 export type SaleSources = {
@@ -17,10 +26,13 @@ export type SaleSources = {
   pricing: Readonly<Record<string, ProductPricing>>;
   provisionalPricing: Readonly<Record<string, ProductPricing>>;
   pricingMode: PricingMode;
+  /** Fallback when a combo has no entry in illustrativeBundlePercents. */
   illustrativeBundlePercent: number;
+  illustrativeBundlePercents?: Readonly<Record<string, number>>;
   promotions: readonly Promotion[];
   bundles: readonly BundleDefinition[];
   campaign: Campaign;
+  featuredCombo?: FeaturedComboConfig;
 };
 
 /** Listed products are those with an eligible detail page and proposed collection membership. */
@@ -31,6 +43,20 @@ export function getListedProducts(catalog: readonly PreviewProduct[]): PreviewPr
     seen.add(product.routeKey);
     return true;
   });
+}
+
+function resolveFeatured(config: FeaturedComboConfig, resolveOffer: (bundle: BundleDefinition, previewPercent: number) => BundleOffer, now: number): FeaturedComboView {
+  const offer = resolveOffer(config.bundle, config.previewDiscountPercent);
+  const id = config.bundle.id;
+  if (offer.kind !== "priced" && offer.kind !== "illustrative") return { id, state: "unpriced", isEstimate: false, pricing: null };
+  const end = Date.parse(config.endsAt);
+  return {
+    id,
+    // An unreadable deadline counts as ended, so no open-ended offer can appear by mistake.
+    state: Number.isFinite(end) && now < end ? "live" : "expired",
+    isEstimate: offer.kind === "illustrative",
+    pricing: { referenceTotal: offer.referenceTotal, bundlePrice: offer.bundlePrice, savings: offer.savings, discountPercent: offer.discountPercent },
+  };
 }
 
 export function buildSaleSnapshot(sources: SaleSources, now: number): SaleSnapshot {
@@ -48,14 +74,15 @@ export function buildSaleSnapshot(sources: SaleSources, now: number): SaleSnapsh
       offer: resolveProductOffer(product.routeKey, pricing[product.routeKey], sources.promotions, now),
     };
   });
+  const resolveOffer = (bundle: BundleDefinition, previewPercent: number): BundleOffer => {
+    // Real bundle offers are resolved from official prices only.
+    const offer = resolveBundleOffer(bundle, sources.pricing, listedIds);
+    if (offer.kind !== "preview" || sources.pricingMode !== "development-preview") return offer;
+    return resolveIllustrativeBundle(bundle, pricing, previewPercent) ?? offer;
+  };
   const bundles = sources.bundles
-    .map((bundle): BundleOffer => {
-      // Real bundle offers are resolved from official prices only.
-      const offer = resolveBundleOffer(bundle, sources.pricing, listedIds);
-      if (offer.kind !== "preview" || sources.pricingMode !== "development-preview") return offer;
-      return resolveIllustrativeBundle(bundle, pricing, sources.illustrativeBundlePercent) ?? offer;
-    })
+    .map((bundle) => resolveOffer(bundle, sources.illustrativeBundlePercents?.[bundle.id] ?? sources.illustrativeBundlePercent))
     .filter((offer): offer is Exclude<BundleOffer, { kind: "ineligible" }> => offer.kind !== "ineligible");
   const campaignState = getCampaignState(sources.campaign, sources.promotions, now);
-  return { campaignLive: campaignState === "active", campaignState, pricingMode: sources.pricingMode, products, bundles };
+  return { campaignLive: campaignState === "active", campaignState, pricingMode: sources.pricingMode, products, bundles, featuredCombo: sources.featuredCombo ? resolveFeatured(sources.featuredCombo, resolveOffer, now) : null };
 }

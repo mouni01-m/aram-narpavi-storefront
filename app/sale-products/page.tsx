@@ -9,6 +9,7 @@ import { OfferHighlights } from "@/components/sale/offer-highlights";
 import { ProductSpotlight } from "@/components/sale/product-spotlight";
 import { SaleAnnouncement } from "@/components/sale/sale-announcement";
 import { SaleCollections } from "@/components/sale/sale-collections";
+import { saleSectionFont } from "@/components/sale/section-font";
 import { ShoppingInformation } from "@/components/sale/shopping-information";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
@@ -36,9 +37,9 @@ async function HeritageSale() {
       <SaleCollections />
       <ComboOffers snapshot={view.snapshot} eyebrow={copy.combos.eyebrow} description={copy.combos.copy} note={combosArePreview ? copy.combos.previewNote : undefined} />
       <ProductSpotlight view={view} />
-      <Section className="home-section sale-products" id="sale-products" aria-labelledby="sale-products-heading">
+      <Section className={`home-section sale-products ${saleSectionFont.variable}`} id="sale-products" aria-labelledby="sale-products-heading">
         <Container>
-          <SectionHeading id="sale-products-heading" eyebrow="The full range" title={copy.products.heading} description={copy.products.copy} />
+          <SectionHeading id="sale-products-heading" eyebrow="The full range" title={copy.products.heading} description={copy.products.copy} align="center" />
           <CatalogProducts />
         </Container>
       </Section>

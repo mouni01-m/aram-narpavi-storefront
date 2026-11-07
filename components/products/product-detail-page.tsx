@@ -1,9 +1,11 @@
 import Link from "next/link";
+import { Suspense } from "react";
 import { ProductGallery } from "@/components/products/product-gallery";
 import { Container } from "@/components/ui/container";
 import { getPreviewProduct } from "@/lib/content/catalog-preview";
 import { AddPreviewItemButton } from "@/components/cart/add-preview-item-button";
 import { PreviewItemView } from "@/components/analytics/preview-item-view";
+import { ProductPrice } from "@/components/sale/product-price";
 
 export function ProductDetailPage({ routeKey }: { routeKey: string }) {
   const product = getPreviewProduct(routeKey);
@@ -32,8 +34,7 @@ export function ProductDetailPage({ routeKey }: { routeKey: string }) {
             )}
             <div className="product-commerce-boundary" aria-label="Purchase information status">
               <h2>Purchase information</h2>
-              {product.tentativePriceInr !== null ? <p className="product-tentative-price"><strong>₹{product.tentativePriceInr}</strong>{product.packSize ? ` · ${product.packSize}` : ""} · tentative, to be confirmed before orders open.</p> : null}
-              <p>Availability and purchase options will appear once the product record and commerce connection are verified.</p>
+              <p>Price, availability and purchase options will appear only after the product record and commerce connection are verified.</p>
             </div>
             <div className="preview-cart-action" aria-labelledby="preview-cart-action-heading">
               <h2 id="preview-cart-action-heading">Try the local cart prototype</h2>

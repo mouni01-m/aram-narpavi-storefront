@@ -5,9 +5,11 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { AnnouncementBar } from "@/components/layout/announcement-bar";
 import { BrandMark } from "@/components/layout/brand-mark";
+import { SiteSearch } from "@/components/layout/site-search";
 import { useCart } from "@/components/cart/cart-provider";
 
 const navigationItems = [
+  { label: "Heritage Sale", href: "/sale-products" },
   { label: "Shop", href: "/shop" },
   { label: "Bestsellers", href: "/best-sellers" },
   { label: "Combos", href: "/combos" },
@@ -23,7 +25,7 @@ export function SiteHeader() {
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const menuRef = useRef<HTMLElement>(null);
   const desktopNavRef = useRef<HTMLElement>(null);
-  const isActive = (href: string) => pathname === href || (href === "/shop" && (pathname.startsWith("/collections/") || pathname.startsWith("/products/")));
+  const isActive = (href: string) => pathname === href || (href === "/shop" && (pathname.startsWith("/collections/") || pathname.startsWith("/concerns/") || pathname.startsWith("/products/")));
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -75,6 +77,7 @@ export function SiteHeader() {
             <Link className="nav-link" href="/" aria-current={pathname === "/" ? "page" : undefined}>Home</Link>
             {navigationItems.map((item) => <Link className="nav-link" href={item.href} key={item.label} aria-current={isActive(item.href) ? "page" : undefined}>{item.label}</Link>)}
           </nav>
+          <SiteSearch />
           <div className="header-actions">
             <Link className="cart-link" href="/cart" aria-label={`Preview cart, ${itemCount} total ${itemCount === 1 ? "unit" : "units"}`}>
               Cart <span aria-hidden="true">{itemCount}</span>

@@ -20,13 +20,13 @@ export function ProductGallery({ images, productName }: { images: readonly Previ
   return (
     <div className="product-gallery">
       <div className="product-gallery__main">
-        <Image src={selectedImage.src} alt={selectedImage.alt} fill sizes="(max-width: 760px) 100vw, 48vw" priority />
+        <Image src={selectedImage.src} alt={selectedImage.alt} fill sizes="(max-width: 760px) 100vw, 48vw" priority style={selectedImage.focus ? { objectPosition: selectedImage.focus } : undefined} />
       </div>
       {images.length > 1 ? (
         <div className="product-gallery__thumbnails" aria-label={`${productName} image selection`}>
           {images.map((image, index) => (
             <button key={image.src} type="button" aria-label={`Show image ${index + 1} of ${images.length}`} aria-pressed={selectedIndex === index} onClick={() => setSelectedIndex(index)}>
-              <Image src={image.src} alt="" fill sizes="72px" />
+              <Image src={image.src} alt="" fill sizes="72px" style={image.focus ? { objectPosition: image.focus } : undefined} />
             </button>
           ))}
         </div>

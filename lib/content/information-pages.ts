@@ -16,7 +16,13 @@ export const contactDetails = {
   email: "aramnarpavi@gmail.com",
   whatsapp: "+91 9585304545",
   additionalPhone: "+91 9655082924",
+  instagramUrl: "https://www.instagram.com/aramnarpaviherbals/",
+  // Set to the shop's verified Facebook page URL; the Facebook link stays hidden until then.
+  facebookUrl: null as string | null,
 } as const;
+
+export const primaryPhoneHref = `tel:${contactDetails.whatsapp.replace(/\s/g, "")}`;
+export const whatsappHref = `https://wa.me/${contactDetails.whatsapp.replace(/\D/g, "")}`;
 
 export function createDraftMetadata(title: string, description: string): Metadata {
   return { title: `${title} | Aram Narpavi Herbals`, description, robots: draftRobots };
